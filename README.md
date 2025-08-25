@@ -50,4 +50,3 @@ Dieses Projekt ist aktuell **nicht lizenziert** und dient der persönlichen Weit
 *Dr. Nature ist ein Herzensprojekt, das kontinuierlich wächst. Es steht für einen respektvollen Umgang mit Mensch, Tier und Natur – getragen von Wissen, Mitgefühl und Verantwortung.*
 
 
-<!-- Test commit for GitHub Actions workflow -->
