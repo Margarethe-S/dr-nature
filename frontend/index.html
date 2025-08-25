@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Nature App</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- 🔝 Navigationsleiste ganz oben -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#">Neuigkeiten</a></li>
+            <li><a href="#">Über uns</a></li>
+            <li><a href="#">User Experience</a></li>
+            <li><a href="#">+ Kategorie hinzufügen</a></li>
+        </ul>
+    </nav>
+
+    <!-- 🌿 Hauptinhalt zentriert -->
+    <main class="main-content">
+        <h1>🌿 Dr. Nature</h1>
+
+        <div class="input-container">
+            <input type="text" id="symptomInput" placeholder="Symptom eingeben (z. B. Kopfschmerzen)" />
+            <button onclick="suchen()">Suchen</button>
+        </div>
+
+        <div id="result" class="result" style="display:none;">
+            <div class="section">
+                <h3>Hausmittel</h3>
+                <p id="hausmittel"></p>
+            </div>
+            <div class="section">
+                <h3>Spiritueller Hinweis</h3>
+                <p id="spirituell"></p>
+            </div>
+            <div class="section">
+                <h3>Erinnerung</h3>
+                <p>🩺 Diese App ersetzt keinen Arztbesuch.</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>

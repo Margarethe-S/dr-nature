@@ -1,0 +1,87 @@
+body {
+  font-family: sans-serif;
+  background-color: #f0f8f5;
+  margin: 0;
+}
+
+/* 🟩 Navbar volle Breite */
+.navbar {
+  background-color: #2c7a7b;
+  padding: 1rem;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* 🌿 Hauptbereich */
+.main-content {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+h1 {
+  text-align: center;
+  color: #2c7a7b;
+}
+
+/* 🔍 Eingabefeld + Button untereinander */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input-container input,
+.input-container button {
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.input-container button {
+  background-color: #319795;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.input-container button:hover {
+  background-color: #2c7a7b;
+}
+
+/* 📋 Ergebnis-Anzeige */
+.result {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.section {
+  margin-bottom: 1rem;
+}
+
+.section h3 {
+  color: #2f855a;
+  margin-bottom: 0.3rem;
+}
