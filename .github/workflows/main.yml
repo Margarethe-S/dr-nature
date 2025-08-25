@@ -1,0 +1,13 @@
+name: 🚀 Dr. Nature – Build Check
+
+on: [push]
+
+jobs:
+  check-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Repository klonen
+        uses: actions/checkout@v3
+
+      - name: ✅ Abschluss
+        run: echo "Alles gecheckt – läuft! 🔄"

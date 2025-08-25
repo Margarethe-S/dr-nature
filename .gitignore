@@ -3,4 +3,4 @@ memory/users/
 memory/global_memory.json
 
 #Verstecke sensible System-Prompts
-system_prompt/drnature.txt
+system_prompt/drnature_prompt.txt
