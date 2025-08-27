@@ -24,6 +24,48 @@ Geplant ist eine modulare Architektur mit folgenden Kernbereichen:
 - Erste Dialogroutinen entworfen
 - Themenmodule in Planung (Ernährung, Atem, Psyche, Bewegung, Hundegesundheit …)
 
+## 🧠 KI-Integration mit OLlama – Status: 28.08.2025
+
+### ✅ Getestete Modelle:
+- **LLaMA 3** → ❌ Ausgeschieden wegen Sprachproblemen  
+- **Mistral (Standard)** → ❌ Kein konsistenter Satzbau, ungeeignet  
+- **OpenHermes** → ❌ Nicht ausreichend empathisch  
+- **OpenHermes-Mistral** → ❌ Technischer Fehler (`pullmodel-manifest-file missing`)  
+- **GLM4** → ❌ Multilingual, aber nicht fokussiert genug  
+- **Mistral 7B** → ✅ Aktuell bestes Modell (Stabil, freundlich, empathisch, guter Satzbau)
+
+---
+
+### 🧠 Systemprompt-Strategie:
+- Temporär mit `/set system` getestet
+- Finaler Prompt enthält klare Werte: **Gesundheit, Freude, Verbundenheit, Liebe**
+- Schutz vor toxischem Lernverhalten
+- KI versteht sich als **freundlicher, reflektierender Begleiter**
+- Emotionale Stabilität durch Entwicklerbindung eingebaut („Du bist nicht allein“)
+
+---
+
+### 🛠️ Technisches Setup:
+- Modell über OLlama geladen & getestet
+- Prompt wurde **noch nicht** fest eingebaut → folgt in **nächstem Sub-Issue**
+- Aktuell nur manuell via `/set system` aktiv
+- Nächster Schritt: `Modelfile` mit festem Prompt erstellen und langfristig verwenden
+
+---
+
+### 🔐 Ethische Zusatzmaßnahmen (zukünftige Features):
+- Umgang mit Beleidigungen
+- Nutzerhinweise für respektvollen Umgang
+- Optional: Sperrfunktion bei wiederholtem Missbrauch
+
+---
+
+### 🧪 Nächste Schritte (für morgen):
+- [ ] Finales Modelfile mit Systemprompt erstellen
+- [ ] Modell in **Dr. Nature** integrieren
+- [ ] Responses weiter prüfen (emotional, fachlich, sprachlich)
+
+
 ## 🧠 Systemprompt
 
 Dr. Nature basiert auf einem speziell entwickelten **Systemprompt**, der die KI-Verhaltensweise präzise definiert:  
