@@ -1,12 +1,14 @@
 # 🌿 Dr. Nature – Ein ganzheitliches KI-Projekt
 
-**Dr. Nature** ist ein KI-gestützter Gesundheitsassistent mit Fokus auf **ganzheitliche Ursachenforschung, emotionale Begleitung** und **naturbasierte Empfehlungen**.
+**Dr. Nature** ist ein KI-gestützter Gesundheitsassistent mit Fokus auf **ganzheitliche Ursachenforschung**, **emotionale Begleitung** und **naturbasierte Empfehlungen**.
 
 Ziel des Projekts ist es, eine digitale Unterstützung zu schaffen, die auf **körperlicher, seelischer, geistiger und energetischer Ebene** arbeitet – respektvoll, ehrlich, mitfühlend und verständnisvoll.
 
+---
+
 ## ✨ Vision
 
-Dr. Nature soll langfristig als **offline-fähiger Begleiter** funktionieren, um Menschen in ihrem individuellen Heilungsweg zu unterstützen – auch ohne permanente Internetverbindung.
+Dr. Nature soll langfristig als **offline-fähiger Begleiter** funktionieren, um Menschen **auf ihrem individuellen Heilungsweg** zu unterstützen – auch ohne permanente Internetverbindung.
 
 Geplant ist eine modulare Architektur mit folgenden Kernbereichen:
 
@@ -16,76 +18,50 @@ Geplant ist eine modulare Architektur mit folgenden Kernbereichen:
 - 📚 **Training durch klassische und alternative Gesundheitsliteratur**
 - ⚙️ **Sicher & ethisch** – kein Datenverkauf, keine Cloud-Abhängigkeit
 
+---
+
 ## 🔧 Aktueller Projektstatus
 
-- Projektstruktur angelegt (Frontend + Backend)
+- Projektstruktur initial aufgebaut (Frontend + Backend)
 - Memory-System in Vorbereitung (JSON-basiert, lokal speicherbar)
+- Ordner für tägliche **Progress Logs** erstellt
 - Systemprompt definiert und lokal gespeichert
-- Erste Dialogroutinen entworfen
-- Themenmodule in Planung (Ernährung, Atem, Psyche, Bewegung, Hundegesundheit …)
-
-## 🧠 KI-Integration mit OLlama – Status: 28.08.2025
-
-### ✅ Getestete Modelle:
-- **LLaMA 3** → ❌ Ausgeschieden wegen Sprachproblemen  
-- **Mistral (Standard)** → ❌ Kein konsistenter Satzbau, ungeeignet  
-- **OpenHermes** → ❌ Nicht ausreichend empathisch  
-- **OpenHermes-Mistral** → ❌ Technischer Fehler (`pullmodel-manifest-file missing`)  
-- **GLM4** → ❌ Multilingual, aber nicht fokussiert genug  
-- **Mistral 7B** → ✅ Aktuell bestes Modell (Stabil, freundlich, empathisch, guter Satzbau)
+- Vergleich verschiedener KI-Umgebungen: **OLama** vs. **LM Studio**
+- Test unterschiedlicher Modelle: u.a. **LLaMA3**, **Mistral 7B**, **OpenHermes**
+- Finale Auswahl: **EM-German-Mistral-V01** (lokal in LM Studio eingesetzt)
+- Umfangreiche Prompt-Tests durchgeführt (u.a. zu: Schmerzen, Selbstbild, emotionale Ausnahmesituationen, Grenzsetzung)
+- Sprachanpassung und Verhaltenstests erfolgreich
+- Systemprompt zeigt klare, mitfühlende, stabile Reaktion auf schwierige Szenarien
+- Weitere Feinjustierung & Integration in App in Planung
 
 ---
-
-### 🧠 Systemprompt-Strategie:
-- Temporär mit `/set system` getestet
-- Finaler Prompt enthält klare Werte: **Gesundheit, Freude, Verbundenheit, Liebe**
-- Schutz vor toxischem Lernverhalten
-- KI versteht sich als **freundlicher, reflektierender Begleiter**
-- Emotionale Stabilität durch Entwicklerbindung eingebaut („Du bist nicht allein“)
-
----
-
-### 🛠️ Technisches Setup:
-- Modell über OLlama geladen & getestet
-- Prompt wurde **noch nicht** fest eingebaut → folgt in **nächstem Sub-Issue**
-- Aktuell nur manuell via `/set system` aktiv
-- Nächster Schritt: `Modelfile` mit festem Prompt erstellen und langfristig verwenden
-
----
-
-### 🔐 Ethische Zusatzmaßnahmen (zukünftige Features):
-- Umgang mit Beleidigungen
-- Nutzerhinweise für respektvollen Umgang
-- Optional: Sperrfunktion bei wiederholtem Missbrauch
-
----
-
-### 🧪 Nächste Schritte (für morgen):
-- [ ] Finales Modelfile mit Systemprompt erstellen
-- [ ] Modell in **Dr. Nature** integrieren
-- [ ] Responses weiter prüfen (emotional, fachlich, sprachlich)
-
 
 ## 🧠 Systemprompt
 
 Dr. Nature basiert auf einem speziell entwickelten **Systemprompt**, der die KI-Verhaltensweise präzise definiert:  
-Er ist liebevoll, ganzheitlich, klar und empathisch – mit einem Fokus auf Respekt, Tiefgang und Verantwortung.
+Er ist **liebevoll, ganzheitlich, klar und empathisch** – mit einem Fokus auf Respekt, Tiefgang und Verantwortung.
 
-> **Hinweis**:  
-> Der vollständige Prompt ist **nicht öffentlich einsehbar**. Er liegt lokal vor, ist jedoch durch `.gitignore` vom Upload ausgeschlossen.
+> **Hinweis:**  
+> Der vollständige Prompt ist **nicht öffentlich einsehbar**.  
+> Er liegt lokal vor und ist durch `.gitignore` sowie das interne **Memory-System** vom GitHub-Upload ausgeschlossen.
 
-## 📁 Strukturübersicht (noch im aufbau)
+---
+
+## 📁 Strukturübersicht (Stand: 28.08.2025)
 
 - `/frontend` – React-basiertes Interface
 - `/backend` – Flask/Python-API
 - `/memory` – JSON-basierte Nutzerdatenstruktur
-- `/system_prompt` – Prompt, Modelle, ethische Regeln
+- `/progress_logs` – Tägliche Entwicklungsfortschritte als Markdown-Dateien
+- `/system_prompt` – Prompt-Dateien, Modellkonfigurationen, ethische Regeln
 - `README.md` – Projektübersicht
+
+---
 
 ## 🛡️ Lizenz
 
-Dieses Projekt ist aktuell **nicht lizenziert** und dient der persönlichen Weiterentwicklung und Erforschung ethischer KI-Anwendungen.  
-**Keine kommerzielle Nutzung oder Weiterverwendung ohne ausdrückliche Genehmigung.**
+Dieses Projekt befindet sich in Entwicklung und unterliegt aktuell **keiner öffentlichen Lizenz**.  
+Jegliche kommerzielle Nutzung oder Weiterverwendung bedarf der **ausdrücklichen Genehmigung der Entwickler:in**.
 
 ---
 
