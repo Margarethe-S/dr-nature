@@ -47,13 +47,15 @@ Er ist **liebevoll, ganzheitlich, klar und empathisch** – mit einem Fokus auf 
 
 ---
 
-## 📁 Strukturübersicht (Stand: 28.08.2025)
+## 📁 Strukturübersicht (Stand: 01.09.2025)
 
-- `/frontend` – React-basiertes Interface
 - `/backend` – Flask/Python-API
-- `/memory` – JSON-basierte Nutzerdatenstruktur
-- `/progress_logs` – Tägliche Entwicklungsfortschritte als Markdown-Dateien
-- `/system_prompt` – Prompt-Dateien, Modellkonfigurationen, ethische Regeln
+- `/frontend` – React-Frontend
+- `/memory` – JSON-basiertes Nutzerspeicher-System
+- `/progress_logs` – Dokumentation des Entwicklungsverlaufs (Markdown)
+- `/system_prompt` – KI-Prompts, Modellkonfigurationen, ethische Regeln
+- `/tests` – Tests für Memory, Modellantworten & Schnittstellen
+- `requirements.txt` – Python-Abhängigkeiten
 - `README.md` – Projektübersicht
 
 ---
@@ -65,11 +67,11 @@ Stelle sicher, dass du eine virtuelle Umgebung verwendest:
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-
+```
 Installiere anschließend alle benötigten Pakete:
 ```bash
 pip install -r requirements.txt
-
+```
 ---
 
 ## 🛡️ Lizenz
@@ -80,5 +82,3 @@ Jegliche kommerzielle Nutzung oder Weiterverwendung bedarf der **ausdrücklichen
 ---
 
 *Dr. Nature ist ein Herzensprojekt ❤️, das kontinuierlich wächst. Es steht für einen respektvollen Umgang mit Mensch, Tier und Natur – getragen von Wissen, Mitgefühl und Verantwortung.*
-
-
