@@ -58,6 +58,20 @@ Er ist **liebevoll, ganzheitlich, klar und empathisch** – mit einem Fokus auf 
 
 ---
 
+## 🛠️ Installation
+
+Stelle sicher, dass du eine virtuelle Umgebung verwendest:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+
+Installiere anschließend alle benötigten Pakete:
+```bash
+pip install -r requirements.txt
+
+---
+
 ## 🛡️ Lizenz
 
 Dieses Projekt befindet sich in Entwicklung und unterliegt aktuell **keiner öffentlichen Lizenz**.  
