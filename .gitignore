@@ -4,3 +4,6 @@ memory/global_memory.json
 
 #Verstecke sensible System-Prompts
 system_prompt/drnature_prompt.txt
+
+
+.venv/
