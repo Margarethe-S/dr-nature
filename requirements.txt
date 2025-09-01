@@ -1,0 +1,2 @@
+# Hauptpaket – HTTP-Anfragen an LM Studio senden
+requests==2.32.5
