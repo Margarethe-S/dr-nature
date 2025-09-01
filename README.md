@@ -64,14 +64,21 @@ Er ist **liebevoll, ganzheitlich, klar und empathisch** – mit einem Fokus auf 
 
 Stelle sicher, dass du eine virtuelle Umgebung verwendest:
 
+### Für Linux/macOS (bash/zsh):
 ```bash
 python -m venv .venv
 source .venv/bin/activate
+```
+### Für Windows (PowerShell):
+```bash
+python -m venv .venv
+.venv\Scripts\Activate.ps1
 ```
 Installiere anschließend alle benötigten Pakete:
 ```bash
 pip install -r requirements.txt
 ```
+> ⚠️ **Hinweis:** Die folgenden Befehle sind systemabhängig. Bitte verwende die Variante, die zu deinem Betriebssystem passt.
 ---
 
 ## 🛡️ Lizenz
