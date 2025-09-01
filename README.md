@@ -88,4 +88,8 @@ Jegliche kommerzielle Nutzung oder Weiterverwendung bedarf der **ausdrücklichen
 
 ---
 
+„Diese Software dient ausschließlich zu Bildungs- und Demonstrationszwecken und stellt keine medizinische Beratung oder Diagnose dar.“
+
+---
+
 *Dr. Nature ist ein Herzensprojekt ❤️, das kontinuierlich wächst. Es steht für einen respektvollen Umgang mit Mensch, Tier und Natur – getragen von Wissen, Mitgefühl und Verantwortung.*
