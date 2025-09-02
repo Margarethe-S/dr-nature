@@ -1,30 +1,47 @@
+import os
 import requests
 import json
 
-# 📁 Lies den Systemprompt aus deiner Datei ein
-with open("system_prompt/drnature_prompt.txt", "r", encoding="utf-8") as f:
+# .env manuell einlesen
+def load_env(filepath=".env"):
+    if not os.path.exists(filepath):
+        print(f"⚠️  .env file not found at: {filepath}")
+        return
+    with open(filepath, "r") as f:
+        for line in f:
+            if line.strip() and not line.startswith("#"):
+                key, value = line.strip().split("=", 1)
+                os.environ[key] = value
+
+load_env()
+
+# Jetzt kannst du auf die Variable zugreifen
+api_url = os.getenv("LMSTUDIO_API_URL")
+
+# Systemprompt laden aus lokaler .txt Datei (eigene Datei anlegen und hier referenzieren)
+with open("system_prompt//drnature_prompt.txt", "r", encoding="utf-8") as f:
     prompt = f.read()
 
 print("System Prompt geladen:", prompt[:300], "...")
 
-# 💬 Testeingabe für das Modell
+# Testeingabe
 user_input = "Was kann ich gegen Kopfschmerzen auf natürliche Weise tun?"
 
-# 📡 Anfrage an LM Studio senden
+# Anfrage senden
 response = requests.post(
-    "http://localhost:1234/v1/chat/completions",
+    api_url,
     headers={"Content-Type": "application/json"},
     json={
         "model": "em_german_mistral_v01",
         "messages": [
-            {"role": "system", "content": system_prompt},
+            {"role": "system", "content": prompt},
             {"role": "user", "content": user_input}
         ],
-        "temperature": 0.7
+        "temperature": 0.3
     }
 )
 
-# 📤 Ausgabe anzeigen
+# Ausgabe
 antwort = response.json()["choices"][0]["message"]["content"]
 print("Antwort von LM Studio:\n")
 print(antwort)
