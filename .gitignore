@@ -2,8 +2,11 @@
 memory/users/
 memory/global_memory.json
 
-#Verstecke sensible System-Prompts
-system_prompt/drnature_prompt.txt
+# Verstecke sensible System-Prompts
+system_prompt
 
-
+# Lokale virtuelle Python-Umgebung (nicht in Git committen!)
 .venv/
+
+# Geheim: Lokale API-Schlüssel oder Verbindungen
+.env
