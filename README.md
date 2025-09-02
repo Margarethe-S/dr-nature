@@ -4,6 +4,8 @@
 
 Ziel des Projekts ist es, eine digitale Unterstützung zu schaffen, die auf **körperlicher, seelischer, geistiger und energetischer Ebene** arbeitet – respektvoll, ehrlich, mitfühlend und verständnisvoll.
 
+🫶 Thank you for your clone – wir freuen uns über dein Interesse am Projekt!
+
 ---
 
 ## ✨ Vision
@@ -33,6 +35,10 @@ Geplant ist eine modulare Architektur mit folgenden Kernbereichen:
 - Sprachanpassung und Verhaltenstests erfolgreich
 - Systemprompt zeigt klare, mitfühlende, stabile Reaktion auf schwierige Szenarien
 - Weitere Feinjustierung & Integration in App in Planung
+- API-Anbindung an LM Studio erfolgreich eingerichtet und getestet
+- Sicherheitsbedingt erfolgt die Prompt-Übergabe nun über lokale Textdateien (`SystemPrompt/`)
+- Timing-Analysen für verschiedene Promptlängen dokumentiert (z. B. kurze Prompts: ~2 Minuten Antwortzeit; lange Prompts: derzeit in Testphase)
+- `.env.example` für lokale Umgebungsvariablen eingeführt
 
 ---
 
@@ -44,10 +50,10 @@ Er ist **liebevoll, ganzheitlich, klar und empathisch** – mit einem Fokus auf 
 > **Hinweis:**  
 > Der vollständige Prompt ist **nicht öffentlich einsehbar**.  
 > Er liegt lokal vor und ist durch `.gitignore` sowie das interne **Memory-System** vom GitHub-Upload ausgeschlossen.
-
+> Der Systemprompt wird laufend optimiert und spiegelt unsere ethischen Leitlinien wider.
 ---
 
-## 📁 Strukturübersicht (Stand: 01.09.2025)
+## 📁 Strukturübersicht (Stand: 02.09.2025)
 
 - `/backend` – Flask/Python-API
 - `/frontend` – React-Frontend
@@ -55,6 +61,7 @@ Er ist **liebevoll, ganzheitlich, klar und empathisch** – mit einem Fokus auf 
 - `/progress_logs` – Dokumentation des Entwicklungsverlaufs (Markdown)
 - `/system_prompt` – KI-Prompts, Modellkonfigurationen, ethische Regeln
 - `/tests` – Tests für Memory, Modellantworten & Schnittstellen
+- `.env.example` – Vorlage für lokale Umgebungsvariablen
 - `requirements.txt` – Python-Abhängigkeiten
 - `README.md` – Projektübersicht
 
