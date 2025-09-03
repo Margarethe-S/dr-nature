@@ -1,6 +1,7 @@
 import os
 import requests
 import json
+import time
 
 # .env manuell einlesen
 def load_env(filepath=".env"):
@@ -19,13 +20,16 @@ load_env()
 api_url = os.getenv("LMSTUDIO_API_URL")
 
 # Systemprompt laden aus lokaler .txt Datei (eigene Datei anlegen und hier referenzieren)
-with open("system_prompt//drnature_prompt.txt", "r", encoding="utf-8") as f:
+with open("system_prompt\\drnature_prompt_test1.2.txt", "r", encoding="utf-8") as f:
     prompt = f.read()
 
 print("System Prompt geladen:", prompt[:300], "...")
 
 # Testeingabe
 user_input = "Was kann ich gegen Kopfschmerzen auf natürliche Weise tun?"
+
+# Zeit messung beginn
+start_time = time.time()
 
 # Anfrage senden
 response = requests.post(
@@ -40,6 +44,11 @@ response = requests.post(
         "temperature": 0.3
     }
 )
+
+# Zeit messung ende
+end_time = time.time()
+elapsed_time = end_time - start_time
+print(f"\n ⏱️ Die Anfrage dauerte {elapsed_time:.2f} Sekunden.")
 
 # Ausgabe
 antwort = response.json()["choices"][0]["message"]["content"]
