@@ -25,7 +25,7 @@ jobs:
     - name: Run tests
       run: |
         cd backend
-        pytest
+        pytest .
 
     - name: Enable auto-merge
       uses: peter-evans/enable-pull-request-automerge@v3
