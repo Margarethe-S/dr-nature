@@ -7,7 +7,7 @@ on:
 jobs:
   automerge:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.draft == false
+    if: ${{ github.event.pull_request.draft == false }}
 
     steps:
     - name: Checkout code
@@ -32,3 +32,4 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         merge-method: squash
+        pull-request-number: ${{ github.event.pull_request.number }}
