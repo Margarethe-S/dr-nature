@@ -39,6 +39,10 @@ Geplant ist eine modulare Architektur mit folgenden Kernbereichen:
 - Sicherheitsbedingt erfolgt die Prompt-Übergabe nun über lokale Textdateien (`SystemPrompt/`)
 - Timing-Analysen für verschiedene Promptlängen dokumentiert (z. B. kurze Prompts: ~2 Minuten Antwortzeit; lange Prompts: derzeit in Testphase)
 - `.env.example` für lokale Umgebungsvariablen eingeführt
+- GitHub-Auto-Merge vorbereitet (Token-basiert, sichere Verbindung)
+- Branch-Protection-Regeln definiert (main ist geschützt)
+- Force-Push-Schutz, linearer Verlauf und Review des letzten Commits aktiviert
+- Backend-Tests angepasst: Token für sicheren Auto-Merge hinzugefügt
 
 ---
 
@@ -53,14 +57,15 @@ Er ist **liebevoll, ganzheitlich, klar und empathisch** – mit einem Fokus auf 
 > Der Systemprompt wird laufend optimiert und spiegelt unsere ethischen Leitlinien wider.
 ---
 
-## 📁 Strukturübersicht (Stand: 02.09.2025)
+## 📁 Strukturübersicht (Stand: 05.09.2025)
 
-- `/backend` – Flask/Python-API
+- `/backend/test_engine` – Flask/Python-API/ - Tests zur Modellbewertung und Promptreaktion
+- `/books` - Vorbereitug auf modulare Gesundheitsliteratur
 - `/frontend` – React-Frontend
 - `/memory` – JSON-basiertes Nutzerspeicher-System
 - `/progress_logs` – Dokumentation des Entwicklungsverlaufs (Markdown)
 - `/system_prompt` – KI-Prompts, Modellkonfigurationen, ethische Regeln
-- `/tests` – Tests für Memory, Modellantworten & Schnittstellen
+- `/tests_interface` – Tests für Memory, Modellantworten & Schnittstellen
 - `.env.example` – Vorlage für lokale Umgebungsvariablen
 - `requirements.txt` – Python-Abhängigkeiten
 - `README.md` – Projektübersicht
