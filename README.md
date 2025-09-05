@@ -68,7 +68,7 @@ Er ist **liebevoll, ganzheitlich, klar und empathisch** – mit einem Fokus auf 
 - `/tests_interface` – Tests für Memory, Modellantworten & Schnittstellen
 - `.env.example` – Vorlage für lokale Umgebungsvariablen
 - `requirements.txt` – Python-Abhängigkeiten
-- `README.md` – Projektübersicht
+- `README.md` – Projektübersicht 
 
 ---
 
