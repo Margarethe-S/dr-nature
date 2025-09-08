@@ -10,3 +10,7 @@ system_prompt
 
 # Geheim: Lokale API-Schlüssel oder Verbindungen
 .env
+
+# Python-Cache-Dateien
+__pycache__/
+*.pyc
