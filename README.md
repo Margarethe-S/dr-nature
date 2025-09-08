@@ -6,6 +6,10 @@ Ziel des Projekts ist es, eine digitale Unterstützung zu schaffen, die auf **k�
 
 🫶 Thank you for your clone – wir freuen uns über dein Interesse am Projekt!
 
+🛠️ Verwendet folgende GitHub Action zur Testung lokaler Sprachmodelle:
+👉 [LLM Response Timer Action](https://github.com/Margarethe-Techstarter/llm-response-timer-action)
+
+
 ---
 
 ## ✨ Vision

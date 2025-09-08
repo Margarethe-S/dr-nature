@@ -2,8 +2,22 @@ import os
 import requests
 import json
 import time
+import threading
+from logger import save_log
+os.makedirs("logs", exist_ok=True)
 
-# .env manuell einlesen
+# DEIN Pfad zum Systemprompt (Textdatei)
+prompt_path = "system_prompt/drnature_prompt_test1.5.txt"
+
+# Stopp-Event für die Stoppuhr
+stop_event = threading.Event()
+
+elapsed_time = 0  # Initialisierung der elapsed_time-Variable
+
+status_msg = "✅ Erfolgreich!"  # Initialisierung der status_msg-Variable
+
+
+# .env einlesen
 def load_env(filepath=".env"):
     if not os.path.exists(filepath):
         print(f"⚠️  .env file not found at: {filepath}")
@@ -16,23 +30,42 @@ def load_env(filepath=".env"):
 
 load_env()
 
-# Jetzt kannst du auf die Variable zugreifen
+# API-URL aus Umgebungsvariable holen
 api_url = os.getenv("LMSTUDIO_API_URL")
 
-# Systemprompt laden aus lokaler .txt Datei (eigene Datei anlegen und hier referenzieren)
-with open("system_prompt\\drnature_prompt_test1.4.txt", "r", encoding="utf-8") as f:
+# Systemprompt laden – DEIN Pfad:
+with open(prompt_path, "r", encoding="utf-8") as f:
     prompt = f.read()
 
-print("System Prompt geladen:", prompt[:300], "...")
+print("System Prompt wird geladen:", prompt[:300], "...")
 
-# Testeingabe
+# 🕒 Gemeinsame Startzeit
+start_time = time.time()
+success = True  # Annahme: Erfolgreich, bis ein Fehler kommt
+response = None  # Initialisierung der response-Variable
+
+# Stoppuhr in separatem Thread starten
+def live_stopwatch(start_time):
+    while not stop_event.is_set():
+        elapsed = time.time() - start_time
+        mins, secs = divmod(int(elapsed), 60)
+        millis = int((elapsed - int(elapsed)) * 1000)
+        print(f"\r⏳ Laufzeit: {mins:02d}:{secs:02d}.{millis:03d}", end="")
+        time.sleep(0.1)
+    print("\n✅ Stoppuhr beendet.")
+
+# 🟢 Stoppuhr starten (mit übergebener Startzeit)
+t = threading.Thread(target=live_stopwatch, args=(start_time,))
+t.start()
+
+
+
+# Beispiel-Eingabe
 user_input = "Was kann ich gegen Kopfschmerzen auf natürliche Weise tun?"
 
-# Zeit messung beginn
-start_time = time.time()
 
 try:
-    # Anfrage senden mit 5min timeout
+    # Anfrage an LM Studio senden
     response = requests.post(
         api_url,
         headers={"Content-Type": "application/json"},
@@ -44,29 +77,65 @@ try:
             ],
             "temperature": 0.0
         },
-        timeout=300 # 5 Minuten Timeout
+        timeout=300  # 5-Minuten Timeout
     )
 
-    # Zeit messung ende
+    # Endzeit und Berechnung
     end_time = time.time()
     elapsed_time = end_time - start_time
-
-    # Minuten und Sekunden ausgeben
     minutes, seconds = divmod(elapsed_time, 60)
-    print(f"\n  🧠 Die Antwort hat {elapsed_time:.2f} Sekunden gedauert.")
-    print(f"\n  ⏱️ : {minutes:.0f} Minuten und {seconds:.0f} Sekunden.")
-    os.system('powershell -c "[console]::beep(1000, 500)"')  # System-Benachrichtigungston
 
+    print(f"\n✅ Die Antwort hat: {elapsed_time:.2f} Sekunden gedauert.")
+    print(f"🕓 = {int(minutes)} Minuten und {int(seconds)} Sekunden.")
 
-    # Ausgabe
-    antwort = response.json()["choices"][0]["message"]["content"]
-    print(f"\n  Antwort von LM Studio:\n{antwort}")
+    # Antwort ausgeben
+    response = response.json()["choices"][0]["message"]["content"]
+    print(f"\n📩 Antwort von LM Studio:\n{response}")
+
 except requests.exceptions.Timeout:
-    print("⚠️  Die Anfrage hat das Zeitlimit von 5 Minuten überschritten.")
-    print("🛑 Das Modell konnte innerhalb des vorgegebenen Zeitraums (300 Sekunden) keine Antwort generieren.")
-    os.system('powershell -c "[console]::beep(1000, 500); Start-Sleep -Milliseconds 200; [console]::beep(1000, 500)"')  # System-Benachrichtigungston
-
+    error_msg = "⏱️ Die Anfrage hat das Zeitlimit von 5 Minuten überschritten."
+    status_msg = f"Response: {response}"
+    print(error_msg)
+    print(status_msg)
+    response = f"{error_msg}"
+    success = False
 
 except requests.exceptions.RequestException as e:
-    print(f"⚠️  Ein Fehler ist aufgetreten: {e}")
-    os.system('powershell -c "[console]::beep(1000, 500); Start-Sleep -Milliseconds 200; [console]::beep(1000, 500)"')  # System-Benachrichtigungston
+    error_msg = f"❌ Ein Fehler ist aufgetreten: {e}"
+    status_msg = f"Response: {response}"
+    print(error_msg)
+    print(status_msg)
+    response = f"{error_msg}"
+    success = False
+
+except ValueError:
+    error_msg = "❌❌ Antwort konnte nicht als JSON gelesen werden."
+    status_msg = f"Response: {response}"
+    print(error_msg)
+    print(status_msg)
+    response = f"{error_msg}"
+    success = False
+
+except KeyError as e:
+    error_msg = f"❌ Die Antwort der API war unvollständig oder fehlerhaft (KeyError: '{e.args[0]}')."
+    status_msg = f"Response: {response}"
+    print(error_msg)
+    print(status_msg)
+    response = f"{error_msg}"
+    success = False
+
+
+finally:
+    try:
+        save_log(prompt_path, user_input, str(response), elapsed_time, status_msg)
+    except Exception as e:
+        print(f"⚠️ Fehler beim Speichern der Log-Datei: {e}")
+
+    stop_event.set()
+    t.join()
+
+    if success:
+        os.system('powershell -c "[console]::beep(1000, 500)"')
+        print(status_msg)
+    else:
+        os.system('powershell -c "[console]::beep(1000, 500); Start-Sleep -Milliseconds 200; [console]::beep(600, 500)"')
