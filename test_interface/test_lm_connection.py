@@ -7,7 +7,7 @@ from logger import save_log
 os.makedirs("logs", exist_ok=True)
 
 # DEIN Pfad zum Systemprompt (Textdatei)
-prompt_path = "system_prompt/drnature_prompt_test1.5.txt"
+prompt_path = "system_prompt/drnature_prompt_test1.6.txt"
 
 # Stopp-Event für die Stoppuhr
 stop_event = threading.Event()
