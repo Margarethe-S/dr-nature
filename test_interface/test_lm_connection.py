@@ -3,7 +3,7 @@ import requests
 import json
 import time
 import threading
-from logger import save_log
+from logger import save_log, save_conversation_log
 os.makedirs("logs", exist_ok=True)
 
 # DEIN Pfad zum Systemprompt (Textdatei)
@@ -65,6 +65,9 @@ user_input = "Was kann ich gegen Kopfschmerzen auf natürliche Weise tun?"
 
 
 try:
+
+    
+    
     # Anfrage an LM Studio senden
     response = requests.post(
         api_url,
@@ -139,3 +142,67 @@ finally:
         print(status_msg)
     else:
         os.system('powershell -c "[console]::beep(1000, 500); Start-Sleep -Milliseconds 200; [console]::beep(600, 500)"')
+
+print("\n💬 Starte interaktive Konsole. Tippe 'exit' zum Beenden.\n")
+
+conversation = []  # speichert den Verlauf lokal in dieser Session
+
+while True:
+    user_input = input("👤 User: ")
+    if user_input.lower() in ["exit", "quit"]:
+        print("............................🚪 Gespräch beendet.")
+        break
+
+
+    # ⏱️ Neue Startzeit für diese Anfrage
+    start_time = time.time()
+    stop_event.clear()
+    t = threading.Thread(target=live_stopwatch, args=(start_time,))
+    t.start()
+
+
+    try:
+        response = requests.post(
+            api_url,
+            headers={"Content-Type": "application/json"},
+            json={
+                "model": "em_german_mistral_v01",
+                "messages": [{"role": "system", "content": prompt}]
+                           + [{"role": "user", "content": u} for u, _ in conversation]
+                           + [{"role": "assistant", "content": r} for _, r in conversation]
+                           + [{"role": "user", "content": user_input}],
+                "temperature": 0.0
+            },
+            timeout=300
+        )
+
+
+        # ⏱️ Antwortzeit berechnen
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        minutes, seconds = divmod(elapsed_time, 60)
+
+
+        stop_event.set()
+        t.join()
+
+
+        response_text = response.json()["choices"][0]["message"]["content"]
+
+
+        # Verlauf speichern
+        conversation.append((user_input, response_text))
+
+
+        print(f"🤖 KI: {response_text}\n")
+        print(f"🕓 Antwortzeit: {elapsed_time:.2f} Sekunden ({int(minutes)} Min {int(seconds)} Sek)")
+
+
+        save_conversation_log(user_input, response_text, elapsed_time)
+
+
+    except Exception as e:
+        stop_event.set()
+        t.join()
+        print(f"❌ Fehler im Gespräch: {e}")
+        save_log(prompt_path, user_input, f"Fehler: {e}", 0, "❌ Fehler (Gespräch)")
