@@ -1,57 +1,102 @@
-import json
 import os
+import json
+import uuid
 
-# 📁 Pfad zur globalen Speicherdatei (JSON), die alle User-IDs verwaltet
-MEMORY_PATH = "./memory/global_memory.json"
+# 🔁 Globale Konfig: Speicherpfade
+BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+MEMORY_PATH = os.path.join(BASE_PATH, "memory")
+USERS_PATH = os.path.join(MEMORY_PATH, "users")
+GLOBAL_MEMORY_FILE = os.path.join(MEMORY_PATH, "global_memory.json")
 
-# 📁 Ordner, in dem einzelne Nutzerdateien gespeichert werden (user1.json usw.)
-USERS_PATH = "./memory/users/"
+# 🧱 Grundstruktur, wenn Datei neu erstellt wird
+DEFAULT_GLOBAL_STRUCTURE = {
+    "users": {},
+    "default_user_structure": {
+        "name": "",
+        "messages": []
+    }
+}
 
-# 🔄 Funktion zum Laden des globalen Speicherstatus (alle registrierten User, Default-Template)
-def load_global_memory():
-    if not os.path.exists(MEMORY_PATH):
-        raise FileNotFoundError("global_memory.json nicht gefunden!")  # Fehler, wenn Datei fehlt
-    with open(MEMORY_PATH, "r", encoding="utf-8") as file:
-        return json.load(file)  # JSON als Python-Dictionary laden
 
-# 💾 Funktion zum Speichern einer Nutzerdatei (z. B. user1.json)
+# 🧠 Initialisiere Speicherstruktur (einmalig beim Start)
+def init_memory():
+    os.makedirs(USERS_PATH, exist_ok=True)
+    if not os.path.exists(GLOBAL_MEMORY_FILE):
+        with open(GLOBAL_MEMORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(DEFAULT_GLOBAL_STRUCTURE, f, indent=2, ensure_ascii=False)
+
+# 🆔 Neuen User registrieren
+def create_new_user():
+    os.makedirs(USERS_PATH, exist_ok=True)
+
+    # Bestehende User zählen
+    existing_files = os.listdir(USERS_PATH)
+    user_numbers = []
+
+    for filename in existing_files:
+        try:
+            with open(os.path.join(USERS_PATH, filename), "r", encoding="utf-8") as f:
+                data = json.load(f)
+                name = data.get("name", "")
+                if name.startswith("user") and name[4:].isdigit():
+                    user_numbers.append(int(name[4:]))
+        except:
+            continue
+
+    next_user_number = max(user_numbers, default=0) + 1
+    new_name = f"user{next_user_number}"
+    new_uuid = str(uuid.uuid4())
+
+    user_data = {
+        "name": new_name,
+        "messages": []
+    }
+
+    user_file = os.path.join(USERS_PATH, f"{new_name}.json")
+    with open(user_file, "w", encoding="utf-8") as f:
+        json.dump(user_data, f, indent=2, ensure_ascii=False)
+
+    return new_name
+
+
+# 🧭 Nutzer-ID anhand des Namens holen
+def get_user_id_by_name(name):
+    for filename in os.listdir(USERS_PATH):
+        file_path = os.path.join(USERS_PATH, filename)
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if data.get("name") == name:
+                    return filename.replace(".json", "")
+        except:
+            continue
+    return None
+
+
+# 📥 Lade kompletten User-Datensatz
+def load_user_data(user_id):
+    user_file = os.path.join(USERS_PATH, f"{user_id}.json")
+    if not os.path.exists(user_file):
+        raise FileNotFoundError(f"Datei für {user_id} nicht gefunden!")
+    with open(user_file, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+# 💾 Speichere User-Datensatz
 def save_user_data(user_id, user_data):
-    user_file = os.path.join(USERS_PATH, f"{user_id}.json")  # z. B. ./memory/users/user1.json
-    with open(user_file, "w", encoding="utf-8") as file:
-        json.dump(user_data, file, indent=4, ensure_ascii=False)  # als schön formatierte JSON speichern
+    user_file = os.path.join(USERS_PATH, f"{user_id}.json")
+    with open(user_file, "w", encoding="utf-8") as f:
+        json.dump(user_data, f, indent=2, ensure_ascii=False)
 
-# 🔢 Funktion, die automatisch eine freie User-ID erzeugt (user1, user2, user3, …)
-def generate_next_user_id(existing_users):
-    index = 1
-    while f"user{index}" in existing_users:
-        index += 1
-    return f"user{index}"
+# ➕ Füge neue Nachricht zur Message-History hinzu
+def add_message_to_user(user_id, role, content):
+    user_data = load_user_data(user_id)
+    user_data.setdefault("messages", []).append({
+        "role": role,
+        "content": content
+    })
+    save_user_data(user_id, user_data)
 
-# ✨ Funktion zur Initialisierung eines neuen anonymen Nutzers
-def init_new_user():
-    memory = load_global_memory()  # global_memory.json laden
-
-    # Neue, nicht vergebene User-ID ermitteln
-    new_user_id = generate_next_user_id(memory["users"])
-    print(f"[INFO] Neuer User wird angelegt: {new_user_id}")
-
-    # 🧬 Benutzer-Template kopieren und User-ID setzen
-    user_template = memory["default_user_structure"]
-    user_template["name"] = new_user_id
-
-    # Template in globale Übersicht eintragen
-    memory["users"][new_user_id] = user_template
-
-    # Nutzerdatei separat speichern (z. B. user1.json)
-    save_user_data(new_user_id, user_template)
-
-    # global_memory.json ebenfalls aktualisieren
-    with open(MEMORY_PATH, "w", encoding="utf-8") as file:
-        json.dump(memory, file, indent=4, ensure_ascii=False)
-
-    return new_user_id, user_template  # Rückgabe für weitere Verwendung
-
-# 🧪 Testlauf, wenn das Skript direkt ausgeführt wird
-if __name__ == "__main__":
-    user_id, user_data = init_new_user()
-    print(f"[OK] Neuer anonymer User gespeichert: {user_id}")
+# 📤 Hole gesamten bisherigen Nachrichtenverlauf
+def get_user_messages(user_id):
+    user_data = load_user_data(user_id)
+    return user_data.get("messages", [])
