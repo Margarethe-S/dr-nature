@@ -1,13 +1,24 @@
-import os
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'backend')))
+
 import requests
 import json
 import time
 import threading
+
 from logger import save_log, save_conversation_log
 os.makedirs("logs", exist_ok=True)
 
+from memory_manager import (
+    init_memory,
+    get_user_id_by_name,
+    create_new_user,
+    add_message_to_user,
+    get_user_messages
+)
+
 # DEIN Pfad zum Systemprompt (Textdatei)
-prompt_path = "system_prompt/doctor_mode.txt"
+prompt_path = "system_prompt/root_mode.txt"
 
 # Stopp-Event für die Stoppuhr
 stop_event = threading.Event()
@@ -29,6 +40,12 @@ def load_env(filepath=".env"):
                 os.environ[key] = value
 
 load_env()
+
+# 🧠 Speicher initialisieren
+init_memory()
+user_name = "user1"  # später dynamisch, z. B. Login
+user_id = get_user_id_by_name(user_name) or create_new_user()
+print(f"👤 Nutzer: {user_name}")
 
 # API-URL aus Umgebungsvariable holen
 api_url = os.getenv("LMSTUDIO_API_URL")
@@ -69,19 +86,28 @@ try:
     
     
     # Anfrage an LM Studio senden
+    add_message_to_user(user_id, "user", user_input)
+
+    conversation_history = get_user_messages(user_id)
+    payload = {
+        "model": "em_german_mistral_v01",
+        "messages": [{"role": "system", "content": prompt}] + conversation_history,
+        "temperature": 0.0
+    }
+
     response = requests.post(
         api_url,
         headers={"Content-Type": "application/json"},
-        json={
-            "model": "em_german_mistral_v01",
-            "messages": [
-                {"role": "system", "content": prompt},
-                {"role": "user", "content": user_input}
-            ],
-            "temperature": 0.0
-        },
-        timeout=300  # 5-Minuten Timeout
+        json=payload,
+        timeout=300
     )
+
+    response_data = response.json()
+    response_text = response_data["choices"][0]["message"]["content"]
+    status_msg = "✅ Erfolgreich!"
+    print(f"\n📩 Antwort von LM Studio:\n{response_text}")
+    add_message_to_user(user_id, "assistant", response_text)
+    save_log(prompt_path, user_input, response_text, elapsed_time, status_msg)
 
     # Endzeit und Berechnung
     end_time = time.time()
@@ -90,10 +116,6 @@ try:
 
     print(f"\n✅ Die Antwort hat: {elapsed_time:.2f} Sekunden gedauert.")
     print(f"🕓 = {int(minutes)} Minuten und {int(seconds)} Sekunden.")
-
-    # Antwort ausgeben
-    response = response.json()["choices"][0]["message"]["content"]
-    print(f"\n📩 Antwort von LM Studio:\n{response}")
 
 except requests.exceptions.Timeout:
     error_msg = "⏱️ Die Anfrage hat das Zeitlimit von 5 Minuten überschritten."
@@ -127,12 +149,7 @@ except KeyError as e:
     response = f"{error_msg}"
     success = False
 
-
 finally:
-    try:
-        save_log(prompt_path, user_input, str(response), elapsed_time, status_msg)
-    except Exception as e:
-        print(f"⚠️ Fehler beim Speichern der Log-Datei: {e}")
 
     stop_event.set()
     t.join()
@@ -162,21 +179,28 @@ while True:
 
 
     try:
+        add_message_to_user(user_id, "user", user_input)
+
+        conversation_history = get_user_messages(user_id)
+        payload = {
+            "model": "em_german_mistral_v01",
+            "messages": [{"role": "system", "content": prompt}] + conversation_history,
+            "temperature": 0.0
+        }
+
         response = requests.post(
             api_url,
             headers={"Content-Type": "application/json"},
-            json={
-                "model": "em_german_mistral_v01",
-                "messages": [{"role": "system", "content": prompt}]
-                           + [{"role": "user", "content": u} for u, _ in conversation]
-                           + [{"role": "assistant", "content": r} for _, r in conversation]
-                           + [{"role": "user", "content": user_input}],
-                "temperature": 0.0
-            },
+            json=payload,
             timeout=300
         )
 
-
+        response_data = response.json()
+        response_text = response_data["choices"][0]["message"]["content"]
+        status_msg = "✅ Erfolgreich!"
+        print(f"\n📩 Antwort von LM Studio:\n{response_text}")
+        add_message_to_user(user_id, "assistant", response_text)
+        
         # ⏱️ Antwortzeit berechnen
         end_time = time.time()
         elapsed_time = end_time - start_time
@@ -187,8 +211,6 @@ while True:
         t.join()
 
 
-        response_text = response.json()["choices"][0]["message"]["content"]
-
 
         # Verlauf speichern
         conversation.append((user_input, response_text))
@@ -198,7 +220,11 @@ while True:
         print(f"🕓 Antwortzeit: {elapsed_time:.2f} Sekunden ({int(minutes)} Min {int(seconds)} Sek)")
 
 
+        
         save_conversation_log(user_input, response_text, elapsed_time)
+
+      
+
 
 
     except Exception as e:
