@@ -1,0 +1,44 @@
+name: LLM Response Timer Check
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  check-llm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Parse prompt + user input
+        id: parse
+        run: |
+          python3 - << 'EOF'
+          import re
+          import os
+
+          filepath = "test_interface/test_lm_connection.py"
+          with open(filepath, 'r', encoding='utf-8') as f:
+              content = f.read()
+
+          prompt_match = re.search(r'prompt_path\s*=\s*[\'"](.+?)[\'"]', content)
+          input_match = re.search(r'user_input\s*=\s*[\'"](.+?)[\'"]', content)
+
+          prompt_path = prompt_match.group(1) if prompt_match else ""
+          user_input = input_match.group(1) if input_match else ""
+
+          # Neue Methode zum Setzen von Outputs
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_out:
+              gh_out.write(f"prompt_path={prompt_path}\n")
+              gh_out.write(f"user_input={user_input}\n")
+          EOF
+
+      - name: Run LLM Response Timer Action
+        uses: Margarethe-S/llm-response-timer-action@main
+        with:
+          prompt_path: ${{ steps.parse.outputs.prompt_path }}
+          user_input: ${{ steps.parse.outputs.user_input }}
+        env:
+          LMSTUDIO_API_URL: ${{ secrets.LMSTUDIO_API_URL }}
+
