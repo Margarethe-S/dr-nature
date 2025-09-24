@@ -25,9 +25,8 @@ jobs:
 
           prompt_match = re.search(r'prompt_path\s*=\s*[\'"](.+?)[\'"]', content)
           input_match = re.search(r'user_input\s*=\s*[\'"](.+?)[\'"]', content)
-
-          prompt_filename = os.path.basename(prompt_match.group(1)) if prompt_match else ""
-          prompt_path = f"/system_prompts/{prompt_filename}" if prompt_filename else ""
+          prompt_filename = os.path.basename(prompt_match.group(1)) if prompt_match else ""prompt_path = os.path.join("/github/workspace/system_prompt", prompt_filename) if prompt_filename else ""
+          prompt_path = os.path.join("/github/workspace/system_prompt", prompt_filename) if prompt_filename else ""
           user_input = input_match.group(1) if input_match else ""
 
           with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_out:
