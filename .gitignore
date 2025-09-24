@@ -3,7 +3,7 @@ memory/users/
 memory/global_memory.json
 
 # Verstecke sensible System-Prompts
-system_prompt
+system_prompt/900_mode.txt
 
 # Lokale virtuelle Python-Umgebung (nicht in Git committen!)
 .venv/
