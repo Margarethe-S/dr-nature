@@ -30,7 +30,7 @@ jobs:
 
           # Neue Methode zum Setzen von Outputs
           with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_out:
-              gh_out.write(f"prompt_path={prompt_path}\n")
+              gh_out.write(f"prompt_file={prompt_path}\n")
               gh_out.write(f"user_input={user_input}\n")
           EOF
 
