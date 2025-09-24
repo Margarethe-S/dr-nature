@@ -14,6 +14,7 @@ jobs:
       - name: Parse prompt + user input
         id: parse
         run: |
+
           python3 <<EOF
           import re
           import os
@@ -39,6 +40,7 @@ jobs:
           prompt_file: ${{ steps.parse.outputs.prompt_file }}
           user_input: ${{ steps.parse.outputs.user_input }}
           api_url: ${{ secrets.LMSTUDIO_API_URL }}
+
         env:
           LMSTUDIO_API_URL: ${{ secrets.LMSTUDIO_API_URL }}
 
