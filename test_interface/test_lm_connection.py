@@ -13,6 +13,7 @@ from memory_manager import (
     init_memory,
     get_user_id_by_name,
     create_new_user,
+    set_user_mode,
     add_message_to_user,
     get_user_messages
 )
@@ -45,7 +46,13 @@ load_env()
 init_memory()
 user_name = "user1"  # später dynamisch, z. B. Login
 user_id = get_user_id_by_name(user_name) or create_new_user()
-print(f"👤 Nutzer: {user_name}")
+
+# Modus aus Dateinamen extrahieren
+modename = os.path.basename(prompt_path).replace(".txt", "")
+set_user_mode(user_id, modename)  # Setze den Modus für user1
+
+print(f"👤 Nutzer: {user_name}, 🛠️  Modus: {modename}")
+
 
 # API-URL aus Umgebungsvariable holen
 api_url = os.getenv("LMSTUDIO_API_URL")

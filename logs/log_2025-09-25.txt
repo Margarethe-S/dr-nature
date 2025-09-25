@@ -1,0 +1,14 @@
+📝 Status: ✅ Erfolgreich!
+⏰ 2025-09-25 13:46:38
+🕓 Dauer: 0.00 Sekunden
+📤 Prompt-Datei: system_prompt/root_mode.txt
+🧠 Antwort: Hallo! Ich bin Dr. Nature und helfe dir gerne bei deinen Kopfschmerzen. Um die Ursache zu finden, muss ich ein paar Fragen stellen.
+
+1. Wie oft kommen die Kopfschmerzen? Sind sie täglich, wöchentlich oder seltener?
+2. Welche Art von Schmerzen sind es? Zum Beispiel scharf, stichend oder wie ein Druckgefühl?
+3. Verbindet sich die Kopfschmerze mit bestimmten Aktivitäten, Emotionen oder Umständen?
+4. Hast du bereits versucht etwas gegen die Kopfschmerzen zu tun? Wenn ja, welche Maßnahmen waren das und wie effektiv waren sie für dich?
+5. Gibt es Faktoren in deinem Alltag, die sich auf deine Gesundheit auswirken könnten? Zum Beispiel Stress, unzureichenden Schlaf oder eine schlechte Ernährung?
+
+Sobald ich diese Informationen habe, kann ich dir einige natürliche Tipps geben, um die Kopfschmerzen zu lindern. Vielen Dank!
+----------------------------------------

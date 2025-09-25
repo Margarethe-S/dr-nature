@@ -7,6 +7,7 @@ BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 MEMORY_PATH = os.path.join(BASE_PATH, "memory")
 USERS_PATH = os.path.join(MEMORY_PATH, "users")
 GLOBAL_MEMORY_FILE = os.path.join(MEMORY_PATH, "global_memory.json")
+DEFAULT_MODE = "core_mode"
 
 # 🧱 Grundstruktur, wenn Datei neu erstellt wird
 DEFAULT_GLOBAL_STRUCTURE = {
@@ -49,6 +50,7 @@ def create_new_user():
 
     user_data = {
         "name": new_name,
+        "mode": DEFAULT_MODE,
         "messages": []
     }
 
@@ -58,6 +60,10 @@ def create_new_user():
 
     return new_name
 
+def set_user_mode(user_id, mode_name):
+    user_data = load_user_data(user_id)
+    user_data["mode"] = mode_name
+    save_user_data(user_id, user_data)
 
 # 🧭 Nutzer-ID anhand des Namens holen
 def get_user_id_by_name(name):
