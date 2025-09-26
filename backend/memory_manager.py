@@ -14,7 +14,8 @@ DEFAULT_GLOBAL_STRUCTURE = {
     "users": {},
     "default_user_structure": {
         "name": "",
-        "messages": []
+        "messages": [],
+        "mode": DEFAULT_MODE
     }
 }
 
@@ -50,8 +51,8 @@ def create_new_user():
 
     user_data = {
         "name": new_name,
-        "mode": DEFAULT_MODE,
-        "messages": []
+        "messages": [],
+        "mode": DEFAULT_MODE
     }
 
     user_file = os.path.join(USERS_PATH, f"{new_name}.json")
@@ -64,6 +65,8 @@ def set_user_mode(user_id, mode_name):
     user_data = load_user_data(user_id)
     user_data["mode"] = mode_name
     save_user_data(user_id, user_data)
+
+
 
 # 🧭 Nutzer-ID anhand des Namens holen
 def get_user_id_by_name(name):
@@ -94,13 +97,15 @@ def save_user_data(user_id, user_data):
         json.dump(user_data, f, indent=2, ensure_ascii=False)
 
 # ➕ Füge neue Nachricht zur Message-History hinzu
-def add_message_to_user(user_id, role, content):
+def add_message_to_user(user_id, role, content, mode=None):
     user_data = load_user_data(user_id)
     user_data.setdefault("messages", []).append({
         "role": role,
-        "content": content
+        "content": content,
+        "mode": mode or user_data.get("mode", DEFAULT_MODE)
     })
     save_user_data(user_id, user_data)
+
 
 # 📤 Hole gesamten bisherigen Nachrichtenverlauf
 def get_user_messages(user_id):

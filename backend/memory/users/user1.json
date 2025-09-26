@@ -3,12 +3,24 @@
   "messages": [
     {
       "role": "user",
-      "content": "Was kann ich gegen Kopfschmerzen auf natürliche Weise tun?"
+      "content": "Was kann ich gegen Kopfschmerzen auf natürliche Weise tun?",
+      "mode": "core_mode"
     },
     {
       "role": "assistant",
-      "content": "Hallo! Ich bin Dr. Nature und helfe dir gerne bei deinen Kopfschmerzen. Um die Ursache zu finden, muss ich ein paar Fragen stellen.\n\n1. Wie oft kommen die Kopfschmerzen? Sind sie täglich, wöchentlich oder seltener?\n2. Welche Art von Schmerzen sind es? Zum Beispiel scharf, stichend oder wie ein Druckgefühl?\n3. Verbindet sich die Kopfschmerze mit bestimmten Aktivitäten, Emotionen oder Umständen?\n4. Hast du bereits versucht etwas gegen die Kopfschmerzen zu tun? Wenn ja, welche Maßnahmen waren das und wie effektiv waren sie für dich?\n5. Gibt es Faktoren in deinem Alltag, die sich auf deine Gesundheit auswirken könnten? Zum Beispiel Stress, unzureichenden Schlaf oder eine schlechte Ernährung?\n\nSobald ich diese Informationen habe, kann ich dir einige natürliche Tipps geben, um die Kopfschmerzen zu lindern. Vielen Dank!"
+      "content": "Du kannst einige natürliche Methoden ausprobieren, um Kopfschmerzen zu lindern. Du könntest:\n\n1. Ruhe und Entspannung suchen.\n2. Eine warme Kompress auf deinen Kopf legen.\n3. Aromatherapie mit ätherischen Ölen wie Lavendel oder Pfefferminze verwenden.\n4. Meditation oder tiefe Atmung praktizieren.\n5. Ein kaltes Eisglas über deine Stirn halten.\n6. Eine schwache Strömung von Wasser auf deinen Kopf geben.\n7. An einem Ort mit vielen Pflanzen sein, da die natürlichen Phytonomie-Effekte helfen können.\n\nWas hast du schon ausprobiert?",
+      "mode": "core_mode"
+    },
+    {
+      "role": "user",
+      "content": "Was kann ich gegen Kopfschmerzen auf natürliche Weise tun?",
+      "mode": "core_mode"
+    },
+    {
+      "role": "assistant",
+      "content": "Du kannst einige natürliche Methoden ausprobieren, um Kopfschmerzen zu lindern. Du könntest:\n\n1. Ruhe und Entspannung suchen.\n2. Eine warme Kompress auf deinen Kopf legen.\n3. Aromatherapie mit ätherischen Ölen wie Lavendel oder Pfefferminze verwenden.\n4. Meditation oder tiefe Atmung praktizieren.\n5. Ein kaltes Eisglas über deine Stirn halten.\n6. Eine schwache Strömung von Wasser auf deinen Kopf geben.\n7. An einem Ort mit vielen Pflanzen sein, da die natürlichen Phytonomie-Effekte helfen können.\n\nWas hast du schon ausprobiert?",
+      "mode": "core_mode"
     }
   ],
-  "mode": "root_mode"
+  "mode": "core_mode"
 }

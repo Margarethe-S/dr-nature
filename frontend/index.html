@@ -29,19 +29,23 @@
             <button onclick="suchen()">Suchen</button>
         </div>
 
-        <div id="result" class="result">
-            <div class="section">
-                <h3>Hausmittel</h3>
-                <p id="hausmittel"></p>
-            </div>
-            <div class="section">
-                <h3>Spiritueller Hinweis</h3>
-                <p id="spirituell"></p>
-            </div>
-            <div class="section">
-                <h3>Erinnerung</h3>
-                <p>🩺 Diese App ersetzt keinen Arztbesuch.</p>
-            </div>
+        <div class="result">
+    <div class="section sticky-warning">
+        <p>🩺 Hinweis: "Diese App ersetzt keinen Arztbesuch oder medizinische Beratung.
+Bitte ziehe bei Beschwerden eine*n Arzt/Ärztin deines Vertrauens hinzu."
+</p>
+    </div>
+
+    <!-- 💬 Chatverlauf -->
+    <div class="chat-container"></div>
+
+    <div class="chat-input-container" hidden>
+        <input type="text" id="chatInput" placeholder="Schreibe eine Nachricht an Dr. Nature..." />
+        <button onclick="chatSenden()">Senden</button>
+    </div>
+
+</div>
+
         </div>
     </main>
 

@@ -19,7 +19,7 @@ from memory_manager import (
 )
 
 # DEIN Pfad zum Systemprompt (Textdatei)
-prompt_path = "system_prompt/root_mode.txt"
+prompt_path = "system_prompt/core_mode.txt"
 
 # Stopp-Event für die Stoppuhr
 stop_event = threading.Event()
