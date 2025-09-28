@@ -421,3 +421,80 @@ Was hast du schon ausprobiert?
 
 Was hast du schon ausprobiert?
 ----------------------------------------
+📝 Status: ✅ Erfolgreich!
+⏰ 2025-09-28 18:56:00
+🕓 Dauer: 0.00 Sekunden
+📤 Prompt-Datei: system_prompt/core_mode.txt
+🧠 Antwort: Du kannst einige natürliche Methoden ausprobieren, um Kopfschmerzen zu lindern. Du könntest:
+
+1. Ruhe und Entspannung suchen.
+2. Eine warme Kompress auf deinen Kopf legen.
+3. Aromatherapie mit ätherischen Ölen wie Lavendel oder Pfefferminze verwenden.
+4. Meditation oder tiefe Atmung praktizieren.
+5. Ein kaltes Eisglas über deine Stirn halten.
+6. Eine schwache Strömung von Wasser auf deinen Kopf geben.
+7. An einem Ort mit vielen Pflanzen sein, da die natürlichen Phytonomie-Effekte helfen können.
+
+Was hast du schon ausprobiert?
+----------------------------------------
+📝 Status: ✅ Erfolgreich!
+⏰ 2025-09-28 18:57:32
+🕓 Dauer: 0.00 Sekunden
+📤 Prompt-Datei: system_prompt/core_mode.txt
+🧠 Antwort: Du kannst einige natürliche Methoden ausprobieren, um Kopfschmerzen zu lindern. Du könntest:
+
+1. Ruhe und Entspannung suchen.
+2. Eine warme Kompress auf deinen Kopf legen.
+3. Aromatherapie mit ätherischen Ölen wie Lavendel oder Pfefferminze verwenden.
+4. Meditation oder tiefe Atmung praktizieren.
+5. Ein kaltes Eisglas über deine Stirn halten.
+6. Eine schwache Strömung von Wasser auf deinen Kopf geben.
+7. An einem Ort mit vielen Pflanzen sein, da die natürlichen Phytonomie-Effekte helfen können.
+
+Was hast du schon ausprobiert?
+----------------------------------------
+📝 Status: ✅ Erfolgreich!
+⏰ 2025-09-28 18:58:41
+🕓 Dauer: 0.00 Sekunden
+📤 Prompt-Datei: system_prompt/core_mode.txt
+🧠 Antwort: Du kannst einige natürliche Methoden ausprobieren, um Kopfschmerzen zu lindern. Du könntest:
+
+1. Ruhe und Entspannung suchen.
+2. Eine warme Kompress auf deinen Kopf legen.
+3. Aromatherapie mit ätherischen Ölen wie Lavendel oder Pfefferminze verwenden.
+4. Meditation oder tiefe Atmung praktizieren.
+5. Ein kaltes Eisglas über deine Stirn halten.
+6. Eine schwache Strömung von Wasser auf deinen Kopf geben.
+7. An einem Ort mit vielen Pflanzen sein, da die natürlichen Phytonomie-Effekte helfen können.
+
+Was hast du schon ausprobiert?
+----------------------------------------
+📝 Status: ✅ Erfolgreich!
+⏰ 2025-09-28 20:51:00
+🕓 Dauer: 0.00 Sekunden
+📤 Prompt-Datei: system_prompt/core_mode.txt
+🧠 Antwort: Du kannst einige natürliche Methoden ausprobieren, um Kopfschmerzen zu lindern. Du könntest:
+
+1. Ruhe und Entspannung suchen.
+2. Eine warme Kompress auf deinen Kopf legen.
+3. Aromatherapie mit ätherischen Ölen wie Lavendel oder Pfefferminze verwenden.
+4. Meditation oder tiefe Atmung praktizieren.
+5. Ein kaltes Eisglas über deine Stirn halten.
+6. Eine schwache Strömung von Wasser auf deinen Kopf geben.
+7. An einem Ort mit vielen Pflanzen sein, da die natürlichen Phytonomie-Effekte helfen können.
+
+Was hast du schon ausprobiert?
+----------------------------------------
+
+👤 User: ich habe migräne schon 10 jahre kommt bei anspannung stress angst
+🕓 Antwortzeit: 59.03 Sekunden
+🤖 KI: Es ist wichtig, deinen Körper und dein Gehirn zu pflegen, um Migräne zu verhindern. Du könntest:
+
+1. Stressabbau-Techniken wie Yoga, Meditation oder Achtsamkeit praktizieren.
+2. Regelmäßige körperliche Bewegung tun, wie Schwimmen, Joggen oder Yoga.
+3. Eine gesunde Ernährung beibehalten mit viel Obst, Gemüse und Vollkornprodukten.
+4. Ausreichend Schlaf bekommen (7-8 Stunden pro Nacht).
+5. Deinen Arzt um Ratschläge bitten, wenn du deine Migräne-Symptome oder -auslöser besser verstehen möchtest.
+
+Wie gehst du mit dem Stress um?
+----------------------------------------

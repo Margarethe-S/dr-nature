@@ -28,7 +28,16 @@
             <input type="text" id="symptomInput" placeholder="Symptom eingeben (z. B. Kopfschmerzen)" />
             <button onclick="suchen()">Suchen</button>
         </div>
-
+        
+        <!-- 🌐 Moduswahl-Buttons -->
+        <div class="modus-button-container">
+        <button onclick="modusWechsel('ursache')">🔍 Ursachenforschung</button>
+        <button onclick="modusWechsel('reden')">💬 Nur reden</button>
+        <button onclick="modusWechsel('arzt')">🩺 Arztsuche</button>
+        <button onclick="modusWechsel('feedback')">📝 Feedback geben</button>
+        </div>
+        <body onload="ladeStandardVideos()">
+        
         <div class="result">
     <div class="section sticky-warning">
         <p>🩺 Hinweis: "Diese App ersetzt keinen Arztbesuch oder medizinische Beratung.
@@ -44,6 +53,11 @@ Bitte ziehe bei Beschwerden eine*n Arzt/Ärztin deines Vertrauens hinzu."
         <button onclick="chatSenden()">Senden</button>
     </div>
 
+    <!-- 🎥 Immer sichtbare Videos -->
+    <div id="video-container" class="video-section">
+    <!-- Videos werden hier eingefügt -->
+    </div>
+   
 </div>
 
         </div>
