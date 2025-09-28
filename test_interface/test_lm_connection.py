@@ -6,7 +6,11 @@ import json
 import time
 import threading
 
-from logger import save_log, save_conversation_log
+try:
+    from .logger import save_log, save_conversation_log
+except ImportError:
+    from logger import save_log, save_conversation_log
+
 os.makedirs("logs", exist_ok=True)
 
 from memory_manager import (
@@ -239,3 +243,64 @@ while True:
         t.join()
         print(f"❌ Fehler im Gespräch: {e}")
         save_log(prompt_path, user_input, f"Fehler: {e}", 0, "❌ Fehler (Gespräch)")
+
+# ===================================================
+# 🔁 Funktion zum Abrufen der KI-Antwort (für server.py)
+# ===================================================
+def get_lm_response(user_msg, prompt_path):
+    try:
+        if not os.path.exists(prompt_path):
+            return "⚠️ Prompt-Datei nicht gefunden."
+
+
+        with open(prompt_path, "r", encoding="utf-8") as f:
+            prompt = f.read()
+
+
+        api_url = os.getenv("LMSTUDIO_API_URL", "http://127.0.0.1:1234/v1/chat/completions")
+        payload = {
+            "model": "em_german_mistral_v01",
+            "messages": [
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": user_msg}
+            ],
+            "temperature": 0.0
+        }
+
+
+        response = requests.post(api_url, headers={"Content-Type": "application/json"}, json=payload, timeout=60)
+        response_data = response.json()
+        return response_data["choices"][0]["message"]["content"]
+
+
+    except Exception as e:
+        return f"⚠️ Fehler bei der KI-Anfrage: {e}"
+
+
+
+
+# ===================================================
+# 🧪 Manuelle Testfunktion zum Schnell-Check (optional)
+# ===================================================
+def test_lm_model_connection():
+    test_prompt_path = "system_prompt/core_mode.txt"
+    test_input = "Hallo, was kannst du für meine Gesundheit tun?"
+
+
+    print("🧪 Testlauf mit:", test_input)
+    print("📂 Prompt-Datei:", test_prompt_path)
+
+
+    antwort = get_lm_response(test_input, test_prompt_path)
+    print("\n🤖 Antwort vom Modell:")
+    print(antwort)
+
+
+
+
+# ================================================
+# ⚙️ Testmodus nur bei direktem Start (nicht beim Import)
+# ================================================
+if __name__ == "__main__":
+    print("⚙️  Starte Einzeltest für LM-Verbindung...\n")
+    test_lm_model_connection()

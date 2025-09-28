@@ -1,26 +1,5 @@
 {
   "name": "user1",
-  "messages": [
-    {
-      "role": "user",
-      "content": "Was kann ich gegen Kopfschmerzen auf natürliche Weise tun?",
-      "mode": "core_mode"
-    },
-    {
-      "role": "assistant",
-      "content": "Du kannst einige natürliche Methoden ausprobieren, um Kopfschmerzen zu lindern. Du könntest:\n\n1. Ruhe und Entspannung suchen.\n2. Eine warme Kompress auf deinen Kopf legen.\n3. Aromatherapie mit ätherischen Ölen wie Lavendel oder Pfefferminze verwenden.\n4. Meditation oder tiefe Atmung praktizieren.\n5. Ein kaltes Eisglas über deine Stirn halten.\n6. Eine schwache Strömung von Wasser auf deinen Kopf geben.\n7. An einem Ort mit vielen Pflanzen sein, da die natürlichen Phytonomie-Effekte helfen können.\n\nWas hast du schon ausprobiert?",
-      "mode": "core_mode"
-    },
-    {
-      "role": "user",
-      "content": "Was kann ich gegen Kopfschmerzen auf natürliche Weise tun?",
-      "mode": "core_mode"
-    },
-    {
-      "role": "assistant",
-      "content": "Du kannst einige natürliche Methoden ausprobieren, um Kopfschmerzen zu lindern. Du könntest:\n\n1. Ruhe und Entspannung suchen.\n2. Eine warme Kompress auf deinen Kopf legen.\n3. Aromatherapie mit ätherischen Ölen wie Lavendel oder Pfefferminze verwenden.\n4. Meditation oder tiefe Atmung praktizieren.\n5. Ein kaltes Eisglas über deine Stirn halten.\n6. Eine schwache Strömung von Wasser auf deinen Kopf geben.\n7. An einem Ort mit vielen Pflanzen sein, da die natürlichen Phytonomie-Effekte helfen können.\n\nWas hast du schon ausprobiert?",
-      "mode": "core_mode"
-    }
-  ],
-  "mode": "core_mode"
+  "messages": []
+ 
 }
