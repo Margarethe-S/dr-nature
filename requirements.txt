@@ -9,3 +9,4 @@ Flask==2.2
 
 # Flask-CORS für Cross-Origin Resource Sharing
 Flask-Cors
+werkzeug==2.2
