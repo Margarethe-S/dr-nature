@@ -14,8 +14,7 @@ DEFAULT_GLOBAL_STRUCTURE = {
     "users": {},
     "default_user_structure": {
         "name": "",
-        "messages": [],
-        "mode": DEFAULT_MODE
+        "messages": []
     }
 }
 
@@ -99,10 +98,12 @@ def save_user_data(user_id, user_data):
 # ➕ Füge neue Nachricht zur Message-History hinzu
 def add_message_to_user(user_id, role, content, mode=None):
     user_data = load_user_data(user_id)
+    active_mode = user_data.get("mode", DEFAULT_MODE)
+
     user_data.setdefault("messages", []).append({
         "role": role,
         "content": content,
-        "mode": mode or user_data.get("mode", DEFAULT_MODE)
+        "mode": mode or active_mode
     })
     save_user_data(user_id, user_data)
 

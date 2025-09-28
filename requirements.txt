@@ -3,3 +3,9 @@ requests==2.32.5
 
 # Pytest für Unit-Tests
 pytest==7.4.2
+
+# Flask für Backend-Server
+Flask==2.2
+
+# Flask-CORS für Cross-Origin Resource Sharing
+Flask-Cors
