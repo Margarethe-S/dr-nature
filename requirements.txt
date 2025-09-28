@@ -5,7 +5,7 @@ requests==2.32.5
 pytest==7.4.2
 
 # Flask für Backend-Server
-Flask==2.2.5
+Flask==2.2
 
 # Flask-CORS für Cross-Origin Resource Sharing
-Flask-Cors==3.1.1
+Flask-Cors
