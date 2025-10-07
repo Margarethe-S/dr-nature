@@ -1,4 +1,7 @@
 # 🌿 Dr. Nature – Ein ganzheitliches KI-Projekt
+[![License: AGPL v3](https://img.shields.io/badge/license-AGPL--3.0-green.svg)](https://www.gnu.org/licenses/agpl-3.0)
+![Tested on LM Studio](https://img.shields.io/badge/tested-LM%20Studio-blue)
+
 
 **Dr. Nature** ist ein KI-gestützter Gesundheitsassistent mit Fokus auf **ganzheitliche Ursachenforschung**, **emotionale Begleitung** und **naturbasierte Empfehlungen**.
 
@@ -7,7 +10,7 @@ Ziel des Projekts ist es, eine digitale Unterstützung zu schaffen, die auf **k�
 🫶 Thank you for your clone – wir freuen uns über dein Interesse am Projekt!
 
 🛠️ Verwendet folgende GitHub Action zur Testung lokaler Sprachmodelle:
-👉 [LLM Response Timer Action](https://github.com/Margarethe-Techstarter/llm-response-timer-action)
+👉 [LLM Response Timer Action](https://github.com/Margarethe-S/llm-response-timer-action)
 
 
 ---
@@ -99,8 +102,13 @@ pip install -r requirements.txt
 
 ## 🛡️ Lizenz
 
-Dieses Projekt befindet sich in Entwicklung und unterliegt aktuell **keiner öffentlichen Lizenz**.  
-Jegliche kommerzielle Nutzung oder Weiterverwendung bedarf der **ausdrücklichen Genehmigung der Entwickler:in**.
+Dieses Repository wird im Sinne von Lernen und Weiterentwicklung bereitgestellt.
+Du darfst es forken oder anpassen – beachte dabei jedoch die Bedingungen der Lizenz.
+
+🔒 Bei einer Weitergabe oder öffentlichen Nutzung (z. B. Web-Anwendung, Hosting) bist du verpflichtet, auch deine Änderungen offenzulegen.
+
+📜 Lizenz: Dieses Projekt steht unter der GNU Affero General Public License v3.0 (AGPL-3.0).
+Details findest du in der Datei LICENSE.
 
 ---
 
