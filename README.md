@@ -1,81 +1,121 @@
-# 🌿 Dr. Nature – Ein ganzheitliches KI-Projekt
+# 🌿 Dr. Nature – Lokaler KI-Assistent & LLM-Experimentierprojekt
+
+
 [![License: AGPL v3](https://img.shields.io/badge/license-AGPL--3.0-green.svg)](https://www.gnu.org/licenses/agpl-3.0)
 ![Tested on LM Studio](https://img.shields.io/badge/tested-LM%20Studio-blue)
+![Status](https://img.shields.io/badge/status-active%20development-brightgreen)
+
+>**Tech Stack:** Python · Flask · HTML/CSS/JS · JSON · Local LLM APIs (LM Studio)
+
+## 🧠 Projektübersicht
+
+**Dr. Nature** ist ein KI-gestütztes Entwicklungsprojekt mit Fokus auf:
+
+- lokale LLM-Integration  
+- modulare AI-Architektur  
+- Memory-basierte Interaktion  
+- Offline- und Online-Testing  
+- experimentelle AI-Workflows  
 
 
-**Dr. Nature** ist ein KI-gestützter Gesundheitsassistent mit Fokus auf **ganzheitliche Ursachenforschung**, **emotionale Begleitung** und **naturbasierte Empfehlungen**.
+Der aktuelle Haupt-Use-Case ist ein gesundheitsorientierter KI-Assistent, der über ein Web-Frontend genutzt wird und lokal oder API-basiert mit Sprachmodellen kommunizieren kann.
 
-Ziel des Projekts ist es, eine digitale Unterstützung zu schaffen, die auf **körperlicher, seelischer, geistiger und energetischer Ebene** arbeitet – respektvoll, ehrlich, mitfühlend und verständnisvoll.
+Das Projekt dient gleichzeitig als:
 
-🫶 Thank you for your clone – wir freuen uns über dein Interesse am Projekt!
+- praktische AI-Engineering-Umgebung  
+- Experimentierplattform für lokale Modelle  
+- Entwicklungsbasis für zukünftige Offline-AI-Assistenten  
 
-🛠️ Verwendet folgende GitHub Action zur Testung lokaler Sprachmodelle:
-👉 [LLM Response Timer Action](https://github.com/Margarethe-S/llm-response-timer-action)
-
-
----
-
-## ✨ Vision
-
-Dr. Nature soll langfristig als **offline-fähiger Begleiter** funktionieren, um Menschen **auf ihrem individuellen Heilungsweg** zu unterstützen – auch ohne permanente Internetverbindung.
-
-Geplant ist eine modulare Architektur mit folgenden Kernbereichen:
-
-- 🧠 **Ursachenforschung** (Fragebäume & individuell anpassbare KI)
-- 🌱 **Naturbasierte Empfehlungen** (Ernährung, Bewegung, Pflanzenkunde)
-- 💬 **Empathische Gesprächsführung** (emotional unterstützend)
-- 📚 **Training durch klassische und alternative Gesundheitsliteratur**
-- ⚙️ **Sicher & ethisch** – kein Datenverkauf, keine Cloud-Abhängigkeit
-
----
-
-## 🔧 Aktueller Projektstatus
-
-- Projektstruktur initial aufgebaut (Frontend + Backend)
-- Memory-System in Vorbereitung (JSON-basiert, lokal speicherbar)
-- Ordner für tägliche **Progress Logs** erstellt
-- Systemprompt definiert und lokal gespeichert
-- Vergleich verschiedener KI-Umgebungen: **OLama** vs. **LM Studio**
-- Test unterschiedlicher Modelle: u.a. **LLaMA3**, **Mistral 7B**, **OpenHermes**
-- Finale Auswahl: **EM-German-Mistral-V01** (lokal in LM Studio eingesetzt)
-- Umfangreiche Prompt-Tests durchgeführt (u.a. zu: Schmerzen, Selbstbild, emotionale Ausnahmesituationen, Grenzsetzung)
-- Sprachanpassung und Verhaltenstests erfolgreich
-- Systemprompt zeigt klare, mitfühlende, stabile Reaktion auf schwierige Szenarien
-- Weitere Feinjustierung & Integration in App in Planung
-- API-Anbindung an LM Studio erfolgreich eingerichtet und getestet
-- Sicherheitsbedingt erfolgt die Prompt-Übergabe nun über lokale Textdateien (`SystemPrompt/`)
-- Timing-Analysen für verschiedene Promptlängen dokumentiert (z. B. kurze Prompts: ~2 Minuten Antwortzeit; lange Prompts: derzeit in Testphase)
-- `.env.example` für lokale Umgebungsvariablen eingeführt
-- GitHub-Auto-Merge vorbereitet (Token-basiert, sichere Verbindung)
-- Branch-Protection-Regeln definiert (main ist geschützt)
-- Force-Push-Schutz, linearer Verlauf und Review des letzten Commits aktiviert
-- Backend-Tests angepasst: Token für sicheren Auto-Merge hinzugefügt
+Das Projekt verbindet einen health-orientierten Use Case mit einer technischen Experimentierumgebung für lokale und API-basierte LLM-Integrationen.
 
 ---
 
-## 🧠 Systemprompt
+## 🎯 Zielsetzung
 
-Dr. Nature basiert auf einem speziell entwickelten **Systemprompt**, der die KI-Verhaltensweise präzise definiert:  
-Er ist **liebevoll, ganzheitlich, klar und empathisch** – mit einem Fokus auf Respekt, Tiefgang und Verantwortung.
+Das Projekt verfolgt zwei technische Richtungen.
 
-> **Hinweis:**  
-> Der vollständige Prompt ist **nicht öffentlich einsehbar**.  
-> Er liegt lokal vor und ist durch `.gitignore` sowie das interne **Memory-System** vom GitHub-Upload ausgeschlossen.
-> Der Systemprompt wird laufend optimiert und spiegelt unsere ethischen Leitlinien wider.
+### 👤 End-User Perspektive
+
+- lokaler KI-Assistent mit Chat-Interface  
+- langfristig offline und online nutzbar  
+- Fokus auf unterstützende Gesundheitskommunikation  
+- optionale Erweiterungen wie Arztsuche oder lokale Hilfsinformationen  
+
+### 🧑‍💻 Developer Perspektive
+
+- austauschbare Modell-APIs  
+- Testen unterschiedlicher LLMs  
+- Logging und Response-Analyse  
+- Prompt-Testing und Evaluation des Systemverhaltens  
+- Vorbereitung für Online-Offline-Switching  
+
 ---
 
-## 📁 Strukturübersicht (Stand: 05.09.2025)
+## ⚙️ Technische Architektur (vereinfacht)
 
-- `/backend/test_engine` – Flask/Python-API/ - Tests zur Modellbewertung und Promptreaktion
-- `/books` - Vorbereitug auf modulare Gesundheitsliteratur
-- `/frontend` – React-Frontend
-- `/memory` – JSON-basiertes Nutzerspeicher-System
-- `/progress_logs` – Dokumentation des Entwicklungsverlaufs (Markdown)
-- `/system_prompt` – KI-Prompts, Modellkonfigurationen, ethische Regeln
-- `/tests_interface` – Tests für Memory, Modellantworten & Schnittstellen
-- `.env.example` – Vorlage für lokale Umgebungsvariablen
-- `requirements.txt` – Python-Abhängigkeiten
-- `README.md` – Projektübersicht 
+Dr. Nature basiert auf einer modularen Struktur:
+
+- Frontend mit Chat-Interface  
+- Flask Backend API  
+- LLM Connector (API-basiert oder lokal)  
+- Prompt-System  
+- Logging und Testinterface  
+- JSON-basiertes Memory-System  
+
+Die API-Verbindung wird über Umgebungsvariablen gesteuert, wodurch unterschiedliche Modell-Endpunkte flexibel genutzt werden können.
+
+---
+
+## 🚧 Aktueller Entwicklungsstand
+
+**Bereits umgesetzt:**
+
+- Web-Frontend mit Chat-Interface  
+- Backend-Kommunikation über Flask  
+- API-Anbindung an LM Studio  
+- API-Konfiguration über Umgebungsvariablen für flexible Modell-Endpunkte  
+- lokale Prompt-Verwaltung  
+- Logging und Timing-Tests  
+- Testumgebung für Modellantworten  
+- vorbereitete Memory-Struktur (JSON-basiert)  
+- GitHub Action zur Antwortzeitmessung (LLM Response Timer Action)
+
+**Getestete Modelle:**
+
+- Mistral 7B  
+- LLaMA3  
+- OpenHermes  
+
+**Aktuelle Entwicklungsrichtung:**
+
+- Ausbau der lokalen Runtime  
+- Vorbereitung eines Developer-Modes  
+- Online-Offline-Testing erweitern  
+- langfristige Memory-Strategie  
+
+---
+
+## 🧩 Systemprompts & Modi
+
+Dr. Nature nutzt ein modulares Prompt-System.
+
+Die Systemprompts sind im Repository sichtbar und können angepasst werden, um unterschiedliche Test- oder Gesprächsmodi zu evaluieren (z. B. Core, Root oder Talk Mode).
+
+Damit kann das Verhalten der KI flexibel getestet und weiterentwickelt werden.
+
+---
+
+## 📁 Projektstruktur (vereinfacht)
+
+- `backend/` – Flask API & Modellkommunikation  
+- `frontend/` – Web-Interface  
+- `memory/` – JSON-basiertes Memory-System  
+- `system_prompt/` – Prompt-Dateien & Konfiguration  
+- `tests_interface/` – Logging & Modelltests  
+- `progress_logs/` – Entwicklungsdokumentation  
+- `.env.example` – lokale Umgebungsvariablen  
+
+Geplante Richtung: Ausbau einer lokalen Runtime sowie optionaler Online-/Offline-Testmodi für verschiedene LLM-Setups.
 
 ---
 
@@ -109,11 +149,3 @@ Du darfst es forken oder anpassen – beachte dabei jedoch die Bedingungen der L
 
 📜 Lizenz: Dieses Projekt steht unter der GNU Affero General Public License v3.0 (AGPL-3.0).
 Details findest du in der Datei LICENSE.
-
----
-
-„Diese Software dient ausschließlich zu Bildungs- und Demonstrationszwecken und stellt keine medizinische Beratung oder Diagnose dar.“
-
----
-
-*Dr. Nature ist ein Herzensprojekt ❤️, das kontinuierlich wächst. Es steht für einen respektvollen Umgang mit Mensch, Tier und Natur – getragen von Wissen, Mitgefühl und Verantwortung.*
