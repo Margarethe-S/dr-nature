@@ -23,12 +23,7 @@
     <!-- 🌿 Hauptinhalt zentriert -->
     <main class="main-content">
         <h1>🌿 Dr. Nature</h1>
-
-        <div class="input-container">
-            <input type="text" id="symptomInput" placeholder="Symptom eingeben (z. B. Kopfschmerzen)" />
-            <button onclick="suchen()">Suchen</button>
-        </div>
-        
+                
         <!-- 🌐 Moduswahl-Buttons -->
         <div class="modus-button-container">
         <button onclick="modusWechsel('ursache')">🔍 Ursachenforschung</button>
@@ -36,8 +31,7 @@
         <button onclick="modusWechsel('arzt')">🩺 Arztsuche</button>
         <button onclick="modusWechsel('feedback')">📝 Feedback geben</button>
         </div>
-        <body onload="ladeStandardVideos()">
-        
+               
         <div class="result">
     <div class="section sticky-warning">
         <p>🩺 Hinweis: "Diese App ersetzt keinen Arztbesuch oder medizinische Beratung.
@@ -46,12 +40,13 @@ Bitte ziehe bei Beschwerden eine*n Arzt/Ärztin deines Vertrauens hinzu."
     </div>
 
     <!-- 💬 Chatverlauf -->
-    <div class="chat-container"></div>
+    <div class="chat-container hidden"></div>
 
-    <div class="chat-input-container" hidden>
-        <input type="text" id="chatInput" placeholder="Schreibe eine Nachricht an Dr. Nature..." />
-        <button onclick="chatSenden()">Senden</button>
-    </div>
+    <div class="input-container">
+            <input type="text" id="symptomInput" placeholder="Schreibe eine Nachricht an Dr. Nature..." />
+            <button onclick="suchen()">Suchen</button>
+        </div>
+    
 
     <!-- 🎥 Immer sichtbare Videos -->
     <div id="video-container" class="video-section">
