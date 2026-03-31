@@ -14,3 +14,8 @@ system_prompt/900_mode.txt
 # Python-Cache-Dateien
 __pycache__/
 *.pyc
+
+private
+
+logs/
+*.log

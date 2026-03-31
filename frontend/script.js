@@ -18,24 +18,29 @@ const datenbank = {
 function suchen() {
   const symptom = document.getElementById("symptomInput").value.trim();
   const chatContainer = document.querySelector(".chat-container");
+  chatContainer.classList.remove("hidden");
+
   if (!symptom) return;
-
-
-  document.querySelector(".chat-input-container").hidden = false;
-
 
   const userMsg = document.createElement("p");
   userMsg.className = "user-input";
-  userMsg.textContent = `🧑 Du: ${symptom}`;
+  userMsg.textContent = `⭐: ${symptom}`;
   chatContainer.appendChild(userMsg);
 
+  chatContainer.scrollTop = chatContainer.scrollHeight;
 
   fetch("http://127.0.0.1:5000/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: symptom })
   })
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Serverfehler");
+      }
+      return res.json();
+    })
+
     .then(data => {
       const reply = document.createElement("p");
       reply.className = "ki-output";
@@ -50,49 +55,12 @@ function suchen() {
       errorMsg.className = "ki-output";
       errorMsg.textContent = "⚠️ Fehler bei der Verbindung zum Server.";
       chatContainer.appendChild(errorMsg);
-    });
-}
-
-
-function chatSenden() {
-  const userMsg = document.getElementById("chatInput").value.trim();
-  const chatContainer = document.querySelector(".chat-container");
-  if (userMsg === "") return;
-
-
-  const userBlock = document.createElement("p");
-  userBlock.className = "user-input";
-  userBlock.textContent = `🧑 Du: ${userMsg}`;
-  chatContainer.appendChild(userBlock);
-
-
-  fetch("http://127.0.0.1:5000/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: userMsg })
-  })
-    .then(res => res.json())
-    .then(data => {
-      const reply = document.createElement("p");
-      reply.className = "ki-output";
-      reply.textContent = `🌿 Dr. Nature: ${data.reply}`;
-      chatContainer.appendChild(reply);
-
-
       requestAnimationFrame(() => {
         chatContainer.scrollTop = chatContainer.scrollHeight;
       });
-    })
-    .catch(err => {
-      const errorMsg = document.createElement("p");
-      errorMsg.className = "ki-output";
-      errorMsg.textContent = "⚠️ Fehler bei der Verbindung zum Server.";
-      chatContainer.appendChild(errorMsg);
     });
-
-
-  document.getElementById("chatInput").value = "";
-  }
+  document.getElementById("symptomInput").value = "";  
+}
 
 function ladeStandardVideos() {
   const videoContainer = document.getElementById("video-container");
@@ -120,16 +88,11 @@ function modusWechsel(modus) {
     // Weitere Modi wie 'ursache', 'reden', 'feedback' kannst du auch hier behandeln
 }
 
-
-
-
 function zeigeArztsuche() {
     const chatContainer = document.querySelector(".chat-container");
 
-
     const arztsucheBlock = document.createElement("div");
     arztsucheBlock.className = "arztsuche-block";
-
 
     arztsucheBlock.innerHTML = `
         <h3>🔍 Arztsuche</h3>
@@ -162,12 +125,10 @@ function zeigeArztsuche() {
         </div>
     `;
 
-
     chatContainer.appendChild(arztsucheBlock);
     chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
-
 function arztSuche() {
     const plz = document.getElementById("plz").value.trim();
     if (!plz) {
@@ -175,23 +136,8 @@ function arztSuche() {
         return;
     }
 
-
     const ergebnisse = document.getElementById("arztsuche-ergebnisse");
     ergebnisse.style.display = "block";
 }
-
-
-function arztSuche() {
-    const plz = document.getElementById("plz").value.trim();
-    if (!plz) {
-        alert("Bitte gib eine Postleitzahl ein.");
-        return;
-    }
-
-
-    const ergebnisse = document.getElementById("arztsuche-ergebnisse");
-    ergebnisse.style.display = "block";
-}
-
 
 document.addEventListener("DOMContentLoaded", ladeStandardVideos);

@@ -14,8 +14,7 @@ jobs:
       - name: Parse prompt + user input
         id: parse
         run: |
-
-          python3 <<EOF
+          python3 - << 'EOF'
           import re
           import os
 
@@ -25,9 +24,11 @@ jobs:
 
           prompt_match = re.search(r'prompt_path\s*=\s*[\'"](.+?)[\'"]', content)
           input_match = re.search(r'user_input\s*=\s*[\'"](.+?)[\'"]', content)
+
           prompt_path = prompt_match.group(1) if prompt_match else ""
           user_input = input_match.group(1) if input_match else ""
 
+          # Neue Methode zum Setzen von Outputs
           with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_out:
               gh_out.write(f"prompt_file={prompt_path}\n")
               gh_out.write(f"user_input={user_input}\n")
@@ -36,10 +37,9 @@ jobs:
       - name: Run LLM Response Timer Action
         uses: Margarethe-S/llm-response-timer-action@main
         with:
-          prompt_file: ${{ steps.parse.outputs.prompt_file }}
+          prompt_file: ${{ steps.parse.outputs.prompt_path }}
           user_input: ${{ steps.parse.outputs.user_input }}
           api_url: ${{ secrets.LMSTUDIO_API_URL }}
-
         env:
           LMSTUDIO_API_URL: ${{ secrets.LMSTUDIO_API_URL }}
 
