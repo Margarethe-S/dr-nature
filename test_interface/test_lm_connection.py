@@ -23,6 +23,7 @@ from memory_manager import (
 
 os.makedirs("logs", exist_ok=True)
 
+prompt_path = "system_prompt/core_mode.txt" 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 prompt_path = os.path.join(BASE_DIR, "system_prompt", "core_mode.txt")
 
