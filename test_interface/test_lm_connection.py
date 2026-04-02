@@ -23,7 +23,8 @@ from memory_manager import (
 
 os.makedirs("logs", exist_ok=True)
 
-prompt_path = "system_prompt/core_mode.txt" # DEIN Pfad zum Systemprompt (Textdatei)
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+prompt_path = os.path.join(BASE_DIR, "system_prompt", "core_mode.txt")
 
 stop_event = threading.Event() # Stopp-Event für die Stoppuhr
 
@@ -288,7 +289,7 @@ def get_lm_response(user_msg, prompt_path, messages=None):
 # 🧪 Manuelle Testfunktion zum Schnell-Check (optional)
 # ===================================================
 def test_lm_model_connection():
-    test_prompt_path = "system_prompt/core_mode.txt"
+    test_prompt_path = os.path.join(BASE_DIR, "system_prompt", "core_mode.txt")
     test_input = "Hallo, was kannst du für meine Gesundheit tun?"
 
 

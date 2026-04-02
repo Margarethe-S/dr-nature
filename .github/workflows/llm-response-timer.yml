@@ -37,7 +37,7 @@ jobs:
       - name: Run LLM Response Timer Action
         uses: Margarethe-S/llm-response-timer-action@main
         with:
-          prompt_file: ${{ steps.parse.outputs.prompt_path }}
+          prompt_file: ${{ steps.parse.outputs.prompt_file }}
           user_input: ${{ steps.parse.outputs.user_input }}
           api_url: ${{ secrets.LMSTUDIO_API_URL }}
         env:
