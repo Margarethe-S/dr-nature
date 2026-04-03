@@ -1,3 +1,5 @@
+➡️ Click here for the English version: [README.md](README.md)
+
 # 🌿 Dr. Nature – KI-Assistent Webanwendung für LLM-Experimente mit lokalem Deployment
 
 ![Python](https://img.shields.io/badge/Python-Backend-blue?logo=python)
@@ -69,6 +71,21 @@ LLM Runtime / Modellserver
 >6. Optional wird die Anfrage im lokalen Logging-System protokolliert
 
 Diese modulare Architektur ermöglicht es, verschiedene Modellserver auszutauschen.
+
+---
+
+## 🔌 Flexible Modellanbindung
+
+- unterstützt lokale LLMs (z. B. LM Studio)
+- offen für externe APIs (für zukünftige Tests)
+- API wird über eine Endpoint-URL gesteuert
+
+Diese Architektur ist darauf ausgelegt:
+- hybride Systeme (lokal + Cloud)
+- einfachen Modellwechsel
+- experimentelle LLM-Tests ohne Codeänderung
+
+
 
 ---
 
@@ -164,6 +181,43 @@ Logging erfolgt über das Testinterface (logger.py).
 
 ---
 
+## 🧠  Memory
+
+Dr. Nature nutzt aktuell zwei Memory-Ansätze:
+
+- Testmodus (JSON-basiert): Speicherung von Nutzerkonversationen pro User (für Tests, Logging und Debugging)
+- Webanwendung: begrenzter serverseitiger Verlauf innerhalb einer Session
+
+Das Memory-System wird aktuell weiter ausgebaut.
+
+
+---
+
+## 🧪 Testmodus (LLM Connection Test)
+
+Neben der Webanwendung enthält das Projekt ein separates Testinterface zur direkten Modellprüfung.
+
+Start:
+python test_interface/test_lm_connection.py
+
+Funktionen:
+- Sendet eine Testanfrage an das konfigurierte LLM
+- lädt den definierten Systemprompt
+- misst die Antwortzeit
+- zeigt eine Live-Stoppuhr
+- gibt akustisches Feedback (Beep)
+- speichert Logs lokal
+- speichert Konversation im Memory-System
+
+Dieses Tool dient zur:
+- Debugging von API-Verbindungen
+- Testen von Prompts
+- Performance-Messung (Antwortzeit)
+- Validierung von Modellverhalten unabhängig vom Frontend
+
+
+---
+
 ## 🧩 Systemprompts & Modi
 
 Systemprompts befinden sich im Ordner:
@@ -198,6 +252,27 @@ test_interface/ – Modelltests & Logging
 
 ---
 
+## ⚙️ Betriebsmodi (Runtime vs Test)
+
+Das Projekt unterscheidet zwei Hauptbetriebsarten:
+
+1. Runtime (Webanwendung)
+- Start über: backend/server.py
+- Nutzung über Browser (Frontend)
+- Fokus: Benutzerinteraktion
+
+2. Testmodus (Developer Tool)
+- Start über: test_interface/test_lm_connection.py
+- Nutzung über Konsole
+- Fokus: Debugging, Logging, Performance
+
+Diese Trennung ermöglicht:
+- stabile Nutzeranwendung
+- unabhängige Entwicklung und Tests
+
+
+---
+
 ## ⚡ Quick Start
 
 1. Repository klonen
@@ -228,6 +303,19 @@ test_interface/ – Modelltests & Logging
 
 >python backend/server.py
 
+7. Frontend öffnen
+
+Das Frontend kann direkt im Browser geöffnet werden:
+
+>Option 1 (einfach):
+- Öffne die Datei: frontend/index.html
+
+>Option 2 (empfohlen):
+- Starte einen Live Server (z. B. VS Code Extension "Live Server")
+
+Das Frontend kommuniziert automatisch mit dem laufenden Flask-Backend.
+
+
 ---
 
 ## 🛠 Installation
@@ -243,6 +331,18 @@ Windows
 .venv\Scripts\Activate.ps1
 
 pip install -r requirements.txt
+
+---
+
+## 🚀 Geplante Erweiterungen
+
+- UI/UX Verbesserungen
+- Sprachinput & Sprachausgabe
+- Online-/Offline-Modus
+- Erweiterte Memory-Verwaltung
+- Karten- & Standortfunktionen
+- optionale Websuche
+
 
 ---
 

@@ -1,4 +1,6 @@
-# 🌿Dr. Nature – AI Assistant Web Application for LLM Experimentation and Local Deployment
+➡️ Zur deutschen Version: [README_de.md](README_de.md)
+
+# 🌿 Dr. Nature – AI Assistant Web Application for LLM Experimentation and Local Deployment
 
 ![Python](https://img.shields.io/badge/Python-Backend-blue?logo=python)
 ![Flask](https://img.shields.io/badge/Flask-API-black?logo=flask)
@@ -69,6 +71,19 @@ LLM Runtime / Model Server
 >6. Optional local logging is created
 
 This modular architecture allows swapping different model servers.
+
+---
+
+## 🔌 Flexible Model Integration
+
+- supports local LLMs (e.g. LM Studio)
+- open to external APIs (for future testing)
+- API is controlled via an endpoint URL
+
+The architecture is designed to:
+- support hybrid systems (local + cloud)
+- allow easier model switching
+- enable experimental LLM testing without changing the code
 
 ---
 
@@ -165,6 +180,42 @@ Logging is handled via the test interface (logger.py).
 
 ---
 
+## 🧠 Memory
+
+Dr. Nature currently uses two memory approaches:
+
+- Test mode (JSON-based): stores user conversations per user (for testing, logging, and debugging)
+- Web application: limited server-side conversation history within a session
+
+The memory system is currently being expanded.
+
+
+---
+
+## 🧪 Test Mode (LLM Connection Test)
+
+In addition to the web application, the project includes a separate test interface for direct model testing.
+
+Start:
+python test_interface/test_lm_connection.py
+
+Features:
+- sends a test request to the configured LLM
+- loads the defined system prompt
+- measures response time
+- shows a live stopwatch
+- provides acoustic feedback (beep)
+- saves logs locally
+- stores conversation in the memory system
+
+This tool is used for:
+- debugging API connections
+- testing prompts
+- measuring performance (response time)
+- validating model behavior independently from the frontend
+
+---
+
 ## 🧩 System Prompts & Modes
 
 System prompts are located in:
@@ -199,6 +250,24 @@ test_interface/ – Model testing & logging
 
 ---
 
+## ⚙️ Operating Modes (Runtime vs Test)
+
+The project distinguishes between two main modes:
+
+1. Runtime (Web Application)
+- started via: backend/server.py
+- used through the browser (frontend)
+- focus: user interaction
+
+2. Test Mode (Developer Tool)
+- started via: test_interface/test_lm_connection.py
+- used in the console
+- focus: debugging, logging, performance
+
+This separation helps keep the application stable while allowing independent testing and development.
+
+---
+
 ## ⚡ Quick Start
 
 1. Clone repository
@@ -229,6 +298,19 @@ source .venv/bin/activate
 
 >python backend/server.py
 
+7. Open Frontend
+
+The frontend can be opened directly in the browser:
+
+>Option 1 (simple):
+- Open the file:
+  frontend/index.html
+
+> Option 2 (recommended):
+- Start a Live Server (e.g. VS Code extension "Live Server")
+
+The frontend automatically connects to the running Flask backend.
+
 ---
 
 ## 🛠 Installation
@@ -244,6 +326,17 @@ Windows
 .venv\Scripts\Activate.ps1
 
 pip install -r requirements.txt
+
+---
+
+## 🚀 Planned Features
+
+- UI/UX improvements
+- voice input & output
+- online/offline mode
+- extended memory handling
+- map & location features
+- optional web search
 
 ---
 
