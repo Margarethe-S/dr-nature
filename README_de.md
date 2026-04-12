@@ -127,9 +127,28 @@ Zuletzt getestet:
 
 ---
 
-## 💻 Web-Interface
+## 🎨 UI / UX Weiterentwicklung
+
+### UX Stand Abschlussprojekt
 
 ![Web-Interface](./images/drnature_web.png)
+
+### UX Stand heute (Online-/Offline-Architektur)
+
+![new-ui](./images/new-ui.png)
+
+Die Benutzeroberfläche wurde grundlegend überarbeitet und von einer einfachen, formularbasierten Struktur zu einem modularen Chat-Interface weiterentwickelt.
+
+Verbesserungen:
+- klare visuelle Struktur (Header, Tabs, Sidebar, Chat)
+- Einführung eines konsistenten Message-Systems mit Rollen (User / Assistant)
+- verbesserte Lesbarkeit und Interaktionsführung
+- Vorbereitung auf erweiterte Funktionen (Tabs, Tools, Multichat)
+- Grundlage für Online-/Offline-Betrieb
+
+Die aktuelle UI bildet die Basis für eine flexible, erweiterbare Benutzeroberfläche und wird schrittweise funktional ergänzt.
+
+
 
 ---
 
