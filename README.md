@@ -126,9 +126,26 @@ Most recently used model:
 
 ---
 
-## 💻 Web Interface
+## 🎨 UI / UX Evolution
+
+### UI (Final Project State)
 
 ![Web Interface](./images/drnature_web.png)
+
+### UI (Current State – Online/Offline Architecture)
+![new-ui](./images/new-ui.png)
+
+The user interface has been fundamentally redesigned, evolving from a simple form-based layout into a modular chat interface.
+
+Improvements:
+- clear visual structure (header, tabs, sidebar, chat)
+- introduction of a consistent message system with roles (user / assistant)
+- improved readability and interaction flow
+- prepared for extended features (tabs, tools, multi-chat)
+- foundation for online/offline operation
+
+The current UI establishes the foundation for a flexible and extensible interface and will be expanded step by step.
+
 
 ---
 
