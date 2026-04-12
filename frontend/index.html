@@ -1,61 +1,363 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dr. Nature App</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Nature</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
 
-    <!-- 🔝 Navigationsleiste ganz oben -->
-    <nav class="navbar">
-        <ul>
-            <li><a href="#">Neuigkeiten</a></li>
-            <li><a href="#">Über uns</a></li>
-            <li><a href="#">User Experience</a></li>
-            <li><a href="#">+ Kategorie hinzufügen</a></li>
-        </ul>
+<body>
+  <div class="app-shell">
+
+
+    <!-- HEADER -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">🌿</div>
+        <h1>Dr. Nature</h1>
+      </div>
+
+
+      <button class="theme-toggle" type="button">
+        <span class="theme-icon">☀</span>
+        <span class="theme-text">Dark Mode</span>
+        <span class="theme-switch"></span>
+      </button>
+    </header>
+
+
+    <!-- TABS -->
+    <nav class="main-tabs">
+
+
+      <!-- CHAT -->
+      <div class="chat-tab-group">
+        <button class="dots-box" id="sidebarToggle" type="button">•••</button>
+
+
+        <button class="tab-button active tab-chat" type="button" data-tab="chat">
+          <span class="tab-label">
+            <span class="tab-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M21 11.5C21 16.1944 16.9706 20 12 20C10.3431 20 8.80336 19.5537 7.5 18.8L3 20L4.2 16.2C3.44628 14.8966 3 13.3569 3 11.5C3 6.80558 7.02944 3 12 3C16.9706 3 21 6.80558 21 11.5Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+            <span>Chat</span>
+          </span>
+        </button>
+      </div>
+
+
+      <!-- KARTEN -->
+      <button class="tab-button" type="button" data-tab="maps">
+        <span class="tab-label">
+          <span class="tab-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <rect
+                x="3"
+                y="5"
+                width="18"
+                height="14"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <line
+                x1="7"
+                y1="9"
+                x2="17"
+                y2="9"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <line
+                x1="7"
+                y1="13"
+                x2="13"
+                y2="13"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+          </span>
+          <span>Karten</span>
+        </span>
+      </button>
+
+
+      <!-- NOTFALL -->
+      <button class="tab-button" type="button" data-tab="emergency">
+        <span class="tab-label">
+          <span class="tab-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 3L19 6V11C19 16 15.5 19.5 12 21C8.5 19.5 5 16 5 11V6L12 3Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <line
+                x1="12"
+                y1="8"
+                x2="12"
+                y2="14"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <line
+                x1="9"
+                y1="11"
+                x2="15"
+                y2="11"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+          </span>
+          <span>Notfall</span>
+        </span>
+      </button>
+
+
     </nav>
 
-    <!-- 🌿 Hauptinhalt zentriert -->
-    <main class="main-content">
-        <h1>🌿 Dr. Nature</h1>
-                
-        <!-- 🌐 Moduswahl-Buttons -->
-        <div class="modus-button-container">
-        <button onclick="modusWechsel('ursache')">🔍 Ursachenforschung</button>
-        <button onclick="modusWechsel('reden')">💬 Nur reden</button>
-        <button onclick="modusWechsel('arzt')">🩺 Arztsuche</button>
-        <button onclick="modusWechsel('feedback')">📝 Feedback geben</button>
+
+    <!-- WORKSPACE -->
+    <main class="workspace sidebar-closed" id="workspace">
+
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-inner">
+
+
+          <button class="new-chat-button" type="button">
+            + Neuer Chat
+          </button>
+
+
+          <div class="chat-list">
+            <button class="chat-list-item active" type="button">
+              <span class="chat-list-title">Gesundheits-Chat</span>
+              <span class="chat-list-time">10:25</span>
+            </button>
+
+
+            <button class="chat-list-item" type="button">
+              <span class="chat-list-title">Programmier-Chat</span>
+              <span class="chat-list-time">Gestern</span>
+            </button>
+
+
+            <button class="chat-list-item" type="button">
+              <span class="chat-list-title">Allgemein</span>
+              <span class="chat-list-time">22.05.2024</span>
+            </button>
+          </div>
         </div>
-               
-        <div class="result">
-    <div class="section sticky-warning">
-        <p>🩺 Hinweis: "Diese App ersetzt keinen Arztbesuch oder medizinische Beratung.
-Bitte ziehe bei Beschwerden eine*n Arzt/Ärztin deines Vertrauens hinzu."
-</p>
-    </div>
+      </aside>
 
-    <!-- 💬 Chatverlauf -->
-    <div class="chat-container hidden"></div>
 
-    <div class="input-container">
-            <input type="text" id="symptomInput" placeholder="Schreibe eine Nachricht an Dr. Nature..." />
-            <button onclick="suchen()">Suchen</button>
+      <!-- CONTENT -->
+      <section class="content-area">
+
+
+        <!-- CHAT PANEL -->
+        <div class="chat-panel active" id="chat-panel">
+          <div class="chat-frame">
+            <div class="chat-messages" id="chatMessages">
+
+
+              <!-- USER -->
+              <div class="message-row user-row">
+                <div class="avatar user-avatar">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8" />
+                    <path
+                      d="M5.5 18C6.4 14.9 8.8 13.5 12 13.5C15.2 13.5 17.6 14.9 18.5 18"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+
+
+                <div class="message-card user-card">
+                  <div class="message-author">User</div>
+                  <div class="message-text">Was hilft bei Kopfschmerzen?</div>
+                  <div class="message-time">10:24</div>
+                </div>
+              </div>
+
+
+              <!-- ASSISTANT -->
+              <div class="message-row assistant-row">
+                <div class="avatar assistant-avatar">
+                  🌿
+                </div>
+
+
+                <div class="message-card assistant-card latest-message">
+                  <div class="message-author">Dr. Nature</div>
+
+
+                  <div class="message-text">
+                    <p>Bei Kopfschmerzen können folgende Maßnahmen helfen:</p>
+                    <ul>
+                      <li>Viel Wasser trinken</li>
+                      <li>Ruhe und frische Luft</li>
+                      <li>Nacken und Schultern entspannen</li>
+                      <li>Pfefferminzöl auf Stirn und Schläfen</li>
+                    </ul>
+                    <p>Falls die Schmerzen anhalten oder sehr stark sind, solltest du ärztlichen Rat einholen.</p>
+                  </div>
+
+
+                  <div class="message-footer">
+                    <span class="message-time">10:25</span>
+
+
+                    <div class="message-actions">
+                      <button type="button" aria-label="Vorlesen">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path
+                            d="M5 10H8L12 7V17L8 14H5V10Z"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M15 10.2C15.8 10.8 16.3 11.8 16.3 12.9C16.3 14 15.8 15 15 15.6"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                          />
+                          <path
+                            d="M17.1 8.6C18.4 9.7 19.1 11.2 19.1 12.9C19.1 14.6 18.4 16.1 17.1 17.2"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </button>
+
+
+                      <button type="button" aria-label="Kopieren">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <rect x="9" y="9" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.7" />
+                          <rect x="5" y="5" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.7" />
+                        </svg>
+                      </button>
+
+
+                      <button type="button" aria-label="Weiterleiten">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path
+                            d="M6 18L18 12L6 6L8.6 11L18 12L8.6 13L6 18Z"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+
+            <!-- INPUT -->
+            <div class="chat-inputbar">
+
+
+              <button class="input-icon-button" type="button" aria-label="Anhang">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M9 12.5L13.8 7.7C15.4 6.1 18 6.1 19.6 7.7C21.2 9.3 21.2 11.9 19.6 13.5L11.4 21.7C8.9 24.2 4.8 24.2 2.3 21.7C-0.2 19.2 -0.2 15.1 2.3 12.6L10.1 4.8"
+                    transform="translate(1 0)"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+
+              <input
+                type="text"
+                id="messageInput"
+                placeholder="Schreibe eine Nachricht an Dr. Nature..."
+              />
+
+
+              <button class="input-icon-button mic-button" type="button" aria-label="Mikrofon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7" />
+                  <path
+                    d="M6.5 11.5C6.5 14.5 8.7 16.7 12 16.7C15.3 16.7 17.5 14.5 17.5 11.5"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                  />
+                  <path d="M12 16.7V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                  <path d="M9 21H15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                </svg>
+              </button>
+
+
+              <button class="send-button" id="sendButton" type="button" aria-label="Senden">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M4 12L19 5L15 12L19 19L4 12Z"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linejoin="round"
+                    transform="rotate(135 12 12)"
+                  />
+                </svg>
+              </button>
+
+
+            </div>
+          </div>
         </div>
-    
 
-    <!-- 🎥 Immer sichtbare Videos -->
-    <div id="video-container" class="video-section">
-    <!-- Videos werden hier eingefügt -->
-    </div>
-   
-</div>
 
+        <!-- MAPS -->
+        <div class="tab-panel" id="maps-panel">
+          <div class="panel-placeholder">
+            <h2>Karten</h2>
+            <p>Hier kommt später der Kartenbereich rein.</p>
+          </div>
         </div>
+
+
+        <!-- EMERGENCY -->
+        <div class="tab-panel" id="emergency-panel">
+          <div class="panel-placeholder">
+            <h2>Notfall</h2>
+            <p>Hier kommen später Notfallinfos rein.</p>
+          </div>
+        </div>
+
+
+      </section>
     </main>
 
-    <script src="script.js"></script>
+
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,32 +1,34 @@
-// Beispiel-Datenbank
-const datenbank = {
-  kopfschmerzen: {
-    hausmittel: "Viel Wasser trinken, Pfefferminzöl auf die Schläfen, Ruhe & frische Luft.",
-    spirituell: "Lass mentale Überforderung los. Gönne dir Stille und verbinde dich mit deinem inneren Frieden."
-  },
-  husten: {
-    hausmittel: "Zwiebelsaft mit Honig, Inhalieren mit Kamille, warme Brustwickel.",
-    spirituell: "Drücke dich aus. Was möchtest du loswerden, das dir auf der Brust liegt?"
-  },
-  bauchweh: {
-    hausmittel: "Fencheltee, Wärmeflasche, leicht verdauliche Nahrung.",
-    spirituell: "Höre auf dein Bauchgefühl – was schlägt dir auf den Magen?"
-  }
-};
-
-
 function suchen() {
-  const symptom = document.getElementById("symptomInput").value.trim();
-  const chatContainer = document.querySelector(".chat-container");
-  chatContainer.classList.remove("hidden");
+  const symptom = document.getElementById("messageInput").value.trim();
+  const chatContainer = document.getElementById("chatMessages");
 
   if (!symptom) return;
 
-  const userMsg = document.createElement("p");
-  userMsg.className = "user-input";
-  userMsg.textContent = `⭐: ${symptom}`;
-  chatContainer.appendChild(userMsg);
+  // USER MESSAGE
+  const userRow = document.createElement("div");
+  userRow.className = "message-row user-row";
 
+  userRow.innerHTML = `
+    <div class="avatar user-avatar">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8" />
+        <path
+          d="M5.5 18C6.4 14.9 8.8 13.5 12 13.5C15.2 13.5 17.6 14.9 18.5 18"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    </div>
+
+    <div class="message-card user-card">
+      <div class="message-author">User</div>
+      <div class="message-text">${symptom}</div>
+      <div class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+    </div>
+  `;
+
+  chatContainer.appendChild(userRow);
   chatContainer.scrollTop = chatContainer.scrollHeight;
 
   fetch("http://127.0.0.1:5000/chat", {
@@ -35,109 +37,83 @@ function suchen() {
     body: JSON.stringify({ message: symptom })
   })
     .then(res => {
-      if (!res.ok) {
-        throw new Error("Serverfehler");
-      }
+      if (!res.ok) throw new Error("Serverfehler");
       return res.json();
     })
-
     .then(data => {
-      const reply = document.createElement("p");
-      reply.className = "ki-output";
-      reply.textContent = `🌿 Dr. Nature: ${data.reply}`;
-      chatContainer.appendChild(reply);
+
+      // ASSISTANT MESSAGE
+      const botRow = document.createElement("div");
+      botRow.className = "message-row assistant-row";
+
+      botRow.innerHTML = `
+        <div class="avatar assistant-avatar">🌿</div>
+
+        <div class="message-card assistant-card latest-message">
+          <div class="message-author">Dr. Nature</div>
+          <div class="message-text">
+            <p>${data.reply}</p>
+          </div>
+          <div class="message-footer">
+            <span class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+          </div>
+        </div>
+      `;
+
+      chatContainer.appendChild(botRow);
+
       requestAnimationFrame(() => {
         chatContainer.scrollTop = chatContainer.scrollHeight;
       });
     })
     .catch(() => {
-      const errorMsg = document.createElement("p");
-      errorMsg.className = "ki-output";
-      errorMsg.textContent = "⚠️ Fehler bei der Verbindung zum Server.";
-      chatContainer.appendChild(errorMsg);
-      requestAnimationFrame(() => {
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-      });
-    });
-  document.getElementById("symptomInput").value = "";  
-}
+      const errorRow = document.createElement("div");
+      errorRow.className = "message-row assistant-row";
 
-function ladeStandardVideos() {
-  const videoContainer = document.getElementById("video-container");
-  const videos = [
-    "https://www.youtube.com/embed/QH2-TGUlwu4",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    "https://www.youtube.com/embed/Ij4p0xkWkVY",
-    "https://www.youtube.com/embed/tgbNymZ7vqY"
-  ];
-  videoContainer.innerHTML = "";
-  videos.forEach(link => {
-    const iframe = document.createElement("iframe");
-    iframe.src = link;
-    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-    iframe.allowFullscreen = true;
-    videoContainer.appendChild(iframe);
-  });
-}
-
-function modusWechsel(modus) {
-    if (modus === "arzt") {
-        zeigeArztsuche();
-        return;
-    }
-    // Weitere Modi wie 'ursache', 'reden', 'feedback' kannst du auch hier behandeln
-}
-
-function zeigeArztsuche() {
-    const chatContainer = document.querySelector(".chat-container");
-
-    const arztsucheBlock = document.createElement("div");
-    arztsucheBlock.className = "arztsuche-block";
-
-    arztsucheBlock.innerHTML = `
-        <h3>🔍 Arztsuche</h3>
-        <label for="plz">Postleitzahl:</label>
-        <input type="text" id="plz" placeholder="z. B. 86899" />
-        <button onclick="arztSuche()">Suchen</button>
-
-
-        <div class="arztsuche-info" id="arztsuche-ergebnisse" style="display: none;">
-            <h4>📞 Notfallnummern:</h4>
-            <ul>
-                <li>112 – Notruf</li>
-                <li>116117 – Ärztlicher Bereitschaftsdienst</li>
-                <li>110 – Polizei</li>
-            </ul>
-
-
-            <h4>🧑‍⚕️ Ärzte in der Nähe:</h4>
-            <ul>
-                <li>Dr. Mustermann – Allgemeinmedizin</li>
-                <li>Dr. Beispiel – Hausarzt</li>
-                <li>Dr. Fiktion – Naturheilkunde</li>
-            </ul>
-
-
-            <h4>🗺️ Karte:</h4>
-            <div class="map-placeholder">
-                <p>[🗺️ Google Maps Platzhalter]</p>
-            </div>
+      errorRow.innerHTML = `
+        <div class="avatar assistant-avatar">🌿</div>
+        <div class="message-card assistant-card">
+          <div class="message-author">Dr. Nature</div>
+          <div class="message-text">
+            <p>⚠️ Fehler bei der Verbindung zum Server.</p>
+          </div>
         </div>
-    `;
+      `;
 
-    chatContainer.appendChild(arztsucheBlock);
-    chatContainer.scrollTop = chatContainer.scrollHeight;
+      chatContainer.appendChild(errorRow);
+    });
+
+  document.getElementById("messageInput").value = "";
 }
 
-function arztSuche() {
-    const plz = document.getElementById("plz").value.trim();
-    if (!plz) {
-        alert("Bitte gib eine Postleitzahl ein.");
-        return;
-    }
 
-    const ergebnisse = document.getElementById("arztsuche-ergebnisse");
-    ergebnisse.style.display = "block";
+// BUTTON + ENTER
+document.getElementById("sendButton").addEventListener("click", suchen);
+
+document.getElementById("messageInput").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    suchen();
+  }
+});
+
+
+// BUTTON FLASH (DEIN CODE)
+function triggerButtonFlash(button) {
+  if (!button) return;
+
+  button.classList.remove('button-flash');
+  void button.offsetWidth;
+  button.classList.add('button-flash');
+
+  setTimeout(() => {
+    button.classList.remove('button-flash');
+  }, 380);
 }
 
-document.addEventListener("DOMContentLoaded", ladeStandardVideos);
+document.querySelectorAll(
+  '.theme-toggle, .input-icon-button, .send-button, .message-actions button, .dots-box'
+).forEach((button) => {
+  button.addEventListener('click', () => {
+    triggerButtonFlash(button);
+  });
+});
